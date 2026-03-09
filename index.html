@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financely Pro - Gestão Inteligente</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS PROFISSIONAL - DESIGN SYSTEM */
+        :root {
+            --primary: #f59e0b; 
+            --primary-hover: #d97706;
+            --primary-text: #1e293b; 
+            
+            --success: #10b981;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --radius: 12px;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --border: #e2e8f0;
+        }
+
+        /* OPÇÃO DARK MODE */
+        body.dark {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body { background-color: var(--bg); color: var(--text-main); transition: background-color 0.3s, color 0.3s; }
+
+        /* Navbar */
+        .navbar {
+            background: var(--card);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 100;
+            transition: background-color 0.3s;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+        .logo span { color: var(--text-main); }
+
+        /* Container Principal */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        
+        /* Centralização Absoluta Telas Iniciais */
+        .auth-wrapper { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: calc(100vh - 80px); /* Pega a altura total menos o menu */
+            width: 100%;
+            padding: 1rem 0;
+        }
+        .auth-container {
+            background: var(--card);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+        
+        .admin-wrapper { max-width: 900px; margin: 2rem auto; }
+
+        /* Forms e Inputs */
+        h2, h3, h4 { margin-bottom: 1.5rem; font-weight: 700; }
+        h4 { margin-bottom: 1rem; font-size: 1.1rem; }
+        input, select, textarea {
+            width: 100%; padding: 0.8rem; margin-bottom: 1rem;
+            border: 1px solid var(--border); border-radius: 8px; font-size: 1rem;
+            background-color: var(--bg); color: var(--text-main);
+            transition: 0.3s; box-sizing: border-box;
+        }
+        input:focus, select:focus, textarea:focus { outline: 2px solid var(--primary); border-color: transparent; }
+
+        /* Botões */
+        .btn-primary {
+            width: 100%; padding: 0.8rem; background: var(--primary);
+            color: var(--primary-text); border: none; border-radius: 8px;
+            font-weight: 700; cursor: pointer; transition: 0.2s;
+        }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
+
+        .btn-secondary { background: var(--bg); color: var(--text-main); border: 1px solid var(--border); cursor: pointer; padding: 0.8rem; border-radius: 8px; font-weight: 600;}
+        .btn-secondary:hover { opacity: 0.8; }
+
+        /* Botões do Painel Admin */
+        .btn-verde { background-color: var(--success); color: white; border: none; padding: 0.8rem; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s;}
+        .btn-verde:hover { opacity: 0.8; }
+        .btn-vermelho { background-color: var(--danger); color: white; border: none; padding: 0.8rem; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s;}
+        .btn-vermelho:hover { opacity: 0.8; }
+        .btn-escuro { background-color: #343a40; color: white; border: none; padding: 0.8rem; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s;}
+        .btn-escuro:hover { opacity: 0.8; }
+
+        .link { color: var(--primary); cursor: pointer; text-decoration: underline; font-size: 0.9em; display: block; margin-top: 15px; font-weight: 600;}
+
+        /* Dashboard e Cartões */
+        .dashboard-wrapper { margin-top: 2rem; margin-bottom: 2rem; }
+        .summary-cards {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem; margin-bottom: 2rem;
+        }
+        .card { background: var(--card); padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); transition: background-color 0.3s; }
+        .card h3 { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin: 0; }
+        .card p { font-size: 2rem; font-weight: 800; margin-top: 0.5rem; }
+        .balance p { color: var(--primary); }
+        .income p { color: var(--success); }
+        .expense p { color: var(--danger); }
+
+        .main-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; }
+        @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
+
+        /* Lista de Itens Financeiros */
+        ul.fin-list { list-style: none; margin-top: 1rem; max-height: 400px; overflow-y: auto; }
+        ul.fin-list li {
+            background: var(--card); padding: 1rem; margin-bottom: 0.8rem;
+            border-radius: 8px; display: flex; justify-content: space-between;
+            align-items: center; border-left: 5px solid var(--border);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-right: 1px solid var(--border); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+        }
+        ul.fin-list li.type-income { border-left-color: var(--success); }
+        ul.fin-list li.type-expense { border-left-color: var(--danger); }
+
+        .chart-container { height: 350px; position: relative; margin-top: 1rem; }
+        .view-section { display: none; }
+        .view-section.active { display: flex; } /* Mantém o flex no wrapper ativo */
+        #dashboard.active, #tela-admin.active { display: block; } /* Dashboard e Admin não são centralizados absolutos */
+        .hidden { display: none !important; }
+
+        .action-btn { cursor: pointer; font-size: 1.1rem; background: none; border: none; transition: 0.2s; padding: 5px; }
+        .edit-btn { color: var(--text-muted); }
+        .delete-btn { color: var(--danger); }
+        .action-btn:hover { transform: scale(1.1); }
+
+        /* Abas e Filtros */
+        .tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; overflow-x: auto;}
+        .tab-btn { background: none; border: none; font-size: 1.1rem; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 0.5rem 1rem; border-radius: 8px; transition: 0.2s; white-space: nowrap;}
+        .tab-btn.active { background: var(--primary); color: var(--primary-text); }
+
+        .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem; }
+        .toolbar-actions { display: flex; gap: 0.5rem; }
+
+        /* Barras de Progresso e Tags */
+        .progress-wrapper { margin-bottom: 1.5rem; }
+        .progress-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600; }
+        .progress-bar { width: 100%; height: 10px; background: var(--bg); border-radius: 5px; overflow: hidden; position: relative; border: 1px solid var(--border);}
+        .progress-fill { height: 100%; background: var(--primary); transition: width 0.3s ease; }
+        .progress-fill.warning { background: #f59e0b; }
+        .progress-fill.danger { background: var(--danger); }
+        
+        .badge { font-size: 0.7rem; padding: 3px 6px; border-radius: 4px; font-weight: bold; margin-left: 5px; }
+        .badge-essencial { background: var(--info); color: white; }
+        .badge-importante { background: var(--primary); color: var(--primary-text); }
+        .badge-superfluo { background: var(--danger); color: white; }
+        .badge-card { background: var(--text-muted); color: white; }
+        
+        /* Botão Nav */
+        .nav-btn { background:none; border:none; cursor:pointer; color:var(--text-muted); font-weight:600; margin-left: 15px; font-size: 1rem;}
+        .nav-btn:hover { color: var(--primary); }
+
+        /* Box de Insights */
+        .insight-box { background: var(--bg); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--primary); margin-bottom: 1rem; }
+        .insight-box h4 { margin: 0 0 0.5rem 0; font-size: 1rem; color: var(--primary); }
+
+        /* Visual Cartão de Crédito */
+        .credit-card-box {
+            background: linear-gradient(135deg, var(--text-main), #475569); color: #ffffff;
+            padding: 1.5rem; border-radius: 12px; position: relative; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2); margin-bottom: 1rem;
+        }
+        .credit-card-box h4 { color: #ffffff; margin-bottom: 0.2rem; }
+        .credit-card-box .chip { width: 40px; height: 25px; background: #fbbf24; border-radius: 4px; margin-bottom: 10px; opacity: 0.8; }
+
+        /* Estilos do Painel Admin */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 20px;}
+        th, td { padding: 10px; border: 1px solid var(--border); text-align: left; vertical-align: middle; color: var(--text-main); }
+        th { background-color: var(--bg); font-weight: 700;}
+        .admin-controls { display: flex; gap: 5px; flex-wrap: wrap; }
+        .admin-controls input { width: 80px; margin: 0; padding: 5px;}
+        .admin-section { text-align: left; margin-top: 20px; padding-top: 20px; border-top: 2px solid var(--border); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Financely<span>.pro</span></div>
+            <div id="userNav" class="hidden" style="display: flex; align-items: center;">
+                <span id="navUserEmail" style="margin-right: 15px; font-size: 0.9rem; font-weight: 600; color: var(--primary);"></span>
+                <button class="nav-btn" onclick="toggleDarkMode()" title="Modo Escuro/Claro">
+                    <i id="darkModeIcon" class="fas fa-moon"></i>
+                </button>
+                <button class="nav-btn" onclick="sair()" title="Sair">Sair <i class="fas fa-sign-out-alt"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <section id="tela-cadastro" class="view-section auth-wrapper">
+            <div class="auth-container">
+                <h2>Criar Conta</h2>
+                <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Cadastre-se para acessar a plataforma.</p>
+                <input type="email" id="cad-email" placeholder="Digite seu e-mail" required>
+                <input type="password" id="cad-senha" placeholder="Crie uma senha" required>
+                <button class="btn-verde" style="width: 100%; margin-top: 10px;" onclick="cadastrar()">Cadastrar</button>
+                <span class="link" onclick="mostrarTela('tela-login')">Já tenho conta. Fazer Login!</span>
+                <span class="link" onclick="mostrarTela('tela-senha-admin')" style="color: var(--text-muted); margin-top: 30px;">Acesso Administrador 🔒</span>
+            </div>
+        </section>
+
+        <section id="tela-login" class="view-section active auth-wrapper">
+            <div class="auth-container">
+                <h2>Fazer Login</h2>
+                <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Acesse seu painel financeiro.</p>
+                <input type="email" id="log-email" placeholder="Seu e-mail" required>
+                <input type="password" id="log-senha" placeholder="Sua senha" required>
+                <button class="btn-primary" onclick="fazerLogin()">Entrar</button>
+                <span class="link" onclick="mostrarTela('tela-cadastro')">Ainda não tem conta? Cadastre-se!</span>
+                <span class="link" onclick="mostrarTela('tela-senha-admin')" style="color: var(--text-muted); margin-top: 30px;">Acesso Administrador 🔒</span>
+            </div>
+        </section>
+
+        <section id="tela-ativacao" class="view-section auth-wrapper">
+            <div class="auth-container">
+                <h2>Ativação Necessária ⚠️</h2>
+                <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Sua conta está inativa ou o tempo expirou. Insira seu código de acesso VIP.</p>
+                <input type="text" id="input-codigo" placeholder="Digite o código (Ex: VIP30)" style="text-transform: uppercase; font-weight: bold; text-align: center;">
+                <button class="btn-verde" style="width: 100%; margin-bottom: 10px;" onclick="ativarCodigo()">Validar Código</button>
+                <p id="msg-erro" style="color: var(--danger); font-size: 0.9em; margin-bottom: 10px; font-weight: 600;"></p>
+                <button class="btn-vermelho" style="width: 100%;" onclick="sair()">Sair da Conta</button>
+            </div>
+        </section>
+
+        <section id="tela-senha-admin" class="view-section auth-wrapper">
+            <div class="auth-container">
+                <h2>Acesso Restrito 🔒</h2>
+                <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Área exclusiva para a administração do sistema.</p>
+                <input type="password" id="senha-admin" placeholder="Digite a senha do admin">
+                <button class="btn-escuro" style="width: 100%;" onclick="validarSenhaAdmin()">Entrar no Painel</button>
+                <span class="link" onclick="mostrarTela('tela-login')">Voltar para Início</span>
+            </div>
+        </section>
+
+        <section id="tela-admin" class="view-section admin-wrapper">
+            <div class="card">
+                <h2>Painel do Administrador ⚙️</h2>
+                
+                <div class="admin-section" style="border-top: none; padding-top: 0;">
+                    <h3>👥 Usuários Cadastrados</h3>
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>E-mail</th>
+                                    <th>Status / Vencimento</th>
+                                    <th>Ações Disponíveis</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela-usuarios"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="admin-section">
+                    <h3>🔑 Gerador de Códigos de Acesso</h3>
+                    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 1rem;">Crie códigos que os usuários poderão usar na tela de ativação. Os códigos são excluídos após o primeiro uso.</p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <input type="text" id="novo-codigo" placeholder="Ex: PROMOCAO30" style="text-transform: uppercase; flex: 1; min-width: 200px;">
+                        <input type="number" id="dias-codigo" placeholder="Qtd Dias" value="30" style="width: 120px;">
+                        <button class="btn-verde" onclick="adminCriarCodigo()">Criar Código</button>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Código Ativo</th>
+                                    <th>Dias Concedidos</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela-codigos"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <button class="btn-secondary" onclick="sair()" style="margin-top: 20px; width: 100%;"><i class="fas fa-arrow-left"></i> Sair do Painel Admin</button>
+            </div>
+        </section>
+
+
+        <section id="dashboard" class="view-section dashboard-wrapper">
+            
+            <div class="tabs">
+                <button class="tab-btn active" id="btnTabInicio" onclick="switchTab('inicio')">Início</button>
+                <button class="tab-btn" id="btnTabAnalise" onclick="switchTab('analise')">Análise Inteligente</button>
+                <button class="tab-btn" id="btnTabCartoes" onclick="switchTab('cartoes')">Cartões</button>
+                <button class="tab-btn" id="btnTabMetas" onclick="switchTab('metas')">Limites Gerais</button>
+                <button class="tab-btn" id="btnTabPerfil" onclick="switchTab('perfil')">Perfil</button>
+                <button class="tab-btn" id="btnTabAnotacoes" onclick="switchTab('anotacoes')">Anotações</button>
+            </div>
+
+            <div style="background: var(--info); color: white; padding: 10px 15px; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 600; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <span><i class="fas fa-shield-check"></i> Seu acesso VIP está ativo.</span>
+                <span id="data-expiracao"></span>
+            </div>
+
+            <div class="toolbar" id="mainToolbar">
+                <input type="month" id="monthFilter" onchange="updateUI()" style="width:auto; margin:0;">
+                <div class="toolbar-actions">
+                    <button class="btn-secondary" style="padding: 0.5rem 1rem;" onclick="exportData()"><i class="fas fa-download"></i> Exportar</button>
+                    <button class="btn-secondary" style="padding: 0.5rem 1rem; color: var(--danger); border-color: var(--danger);" onclick="clearData()"><i class="fas fa-trash"></i> Zerar Dados</button>
+                </div>
+            </div>
+
+            <div id="tabInicio">
+                <div class="summary-cards">
+                    <div class="card balance">
+                        <h3>Saldo Disponível (Contas)</h3>
+                        <p id="totalBalance">R$ 0,00</p>
+                    </div>
+                    <div class="card income">
+                        <h3>Total Entradas</h3>
+                        <p id="totalIncome">R$ 0,00</p>
+                    </div>
+                    <div class="card expense">
+                        <h3>Total Saídas (Geral)</h3>
+                        <p id="totalExpense">R$ 0,00</p>
+                    </div>
+                </div>
+
+                <div class="main-grid">
+                    <div class="card">
+                        <h3 id="formTitle">Nova Transação</h3>
+                        <input type="hidden" id="editId">
+                        
+                        <select id="expenseType" onchange="toggleFormFields()">
+                            <option value="expense">Saída (Despesa)</option>
+                            <option value="income">Entrada (Receita)</option>
+                        </select>
+                        
+                        <input type="text" id="expenseName" placeholder="Ex: Aluguel, Salário, Mercado...">
+                        <input type="number" id="expenseAmount" placeholder="Valor R$" step="0.01">
+                        <input type="date" id="expenseDate">
+                        
+                        <div style="display:flex; gap:10px;">
+                            <select id="expenseCategory"></select>
+                            <button class="btn-secondary" style="width:auto; padding:0 15px;" onclick="manageCategories()" title="Editar Categorias"><i class="fas fa-cog"></i></button>
+                        </div>
+
+                        <div id="paymentMethodContainer">
+                            <select id="expensePaymentMethod">
+                                <option value="main">Conta Principal / Dinheiro</option>
+                            </select>
+                        </div>
+
+                        <select id="expensePriority">
+                            <option value="Essencial">Prioridade: Essencial (Sobrevivência)</option>
+                            <option value="Importante">Prioridade: Importante (Conforto)</option>
+                            <option value="Superfluo">Prioridade: Supérfluo (Desejos)</option>
+                        </select>
+
+                        <button class="btn-primary" id="btnSaveTransaction" onclick="saveTransaction()">Adicionar Transação</button>
+                        <button class="btn-secondary hidden" id="btnCancelEdit" onclick="cancelEdit()" style="margin-top:10px; width:100%;">Cancelar Edição</button>
+                    </div>
+
+                    <div class="card">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>Histórico Recente</h3>
+                            <select id="chartType" onchange="updateChart()" style="width: 120px; margin:0;">
+                                <option value="bar">Barras</option>
+                                <option value="pie">Pizza</option>
+                                <option value="line">Linha</option>
+                            </select>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <canvas id="expenseChart"></canvas>
+                        </div>
+
+                        <ul id="expenseList" class="fin-list"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tabCartoes" class="hidden">
+                <div class="main-grid">
+                    <div class="card">
+                        <h3>Adicionar Cartão de Crédito</h3>
+                        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem;">Cadastre seus cartões para controlar o limite e vincular aos gastos na aba Início.</p>
+                        <label style="font-weight: 600; font-size: 0.9rem;">Nome do Cartão</label>
+                        <input type="text" id="cardName" placeholder="Ex: Nubank, Itaú, Black...">
+                        <label style="font-weight: 600; font-size: 0.9rem;">Limite Total R$</label>
+                        <input type="number" id="cardLimit" placeholder="0.00" step="0.01">
+                        <button class="btn-primary" onclick="addCard()">Salvar Cartão</button>
+                    </div>
+                    <div class="card">
+                        <h3>Meus Cartões (Fatura do Mês)</h3>
+                        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem;">O progresso mostra os gastos filtrados pelo mês atual.</p>
+                        <div id="cardsList" style="margin-top: 1rem;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tabAnalise" class="hidden">
+                <div class="main-grid">
+                    <div class="card">
+                        <h3>Detalhes por Categoria (Neste Mês)</h3>
+                        <ul id="analysisCategoryList" style="max-height: none; overflow: visible; padding-left:0; list-style:none;"></ul>
+                    </div>
+                    <div class="card">
+                        <h3>Diagnóstico de Prioridades</h3>
+                        <div id="analysisInsights"></div>
+                        <div style="margin-top: 2rem;">
+                            <h4>Gasto por Nível de Prioridade</h4>
+                            <div id="priorityBars"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tabMetas" class="hidden">
+                <div class="main-grid">
+                    <div class="card">
+                        <h3>Definir Limite Mensal</h3>
+                        <select id="limitCategory"></select>
+                        <input type="number" id="limitAmount" placeholder="Valor Limite R$" step="0.01">
+                        <button class="btn-primary" onclick="addLimit()">Salvar Limite</button>
+                    </div>
+                    <div class="card">
+                        <h3>Progresso do Mês Atual</h3>
+                        <div id="limitsList" style="margin-top: 1.5rem;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tabPerfil" class="hidden">
+                <div class="card" style="max-width: 600px; margin: 0 auto;">
+                    <h3>Informações do Perfil</h3>
+                    <label style="font-weight: 600; font-size: 0.9rem;">Nome Completo</label>
+                    <input type="text" id="profileName" placeholder="Seu Nome">
+                    <label style="font-weight: 600; font-size: 0.9rem;">Profissão / Cargo</label>
+                    <input type="text" id="profileJob" placeholder="Ex: Desenvolvedor, Empreendedor...">
+                    <button class="btn-primary" onclick="saveProfile()">Salvar Dados</button>
+                    <p id="profileFeedback" style="color: var(--success); font-weight: 600; margin-top: 10px; display: none;">Dados salvos com sucesso!</p>
+                </div>
+            </div>
+
+            <div id="tabAnotacoes" class="hidden">
+                <div class="main-grid">
+                    <div class="card">
+                        <h3>Nova Anotação</h3>
+                        <input type="text" id="noteTitle" placeholder="Título da anotação...">
+                        <textarea id="noteText" rows="5" placeholder="Escreva os detalhes aqui..."></textarea>
+                        <button class="btn-primary" onclick="addNote()">Salvar Anotação</button>
+                    </div>
+                    <div class="card">
+                        <h3>Suas Anotações</h3>
+                        <div id="notesContainer" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem;"></div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        /* ==========================================================================
+           LÓGICA DE SEGURANÇA E ADMINISTRAÇÃO
+           ========================================================================== */
+        let bancoDados = JSON.parse(localStorage.getItem('bancoUsuarios')) || {};
+        let bancoCodigos = JSON.parse(localStorage.getItem('bancoCodigos')) || {};
+        let usuarioLogado = localStorage.getItem('usuarioLogadoAtual') || null;
+
+        // Função para validar o formato do e-mail
+        function validarEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        function mostrarTela(idTela) {
+            document.querySelectorAll('.view-section').forEach(tela => tela.classList.remove('active'));
+            document.getElementById(idTela).classList.add('active');
+            document.getElementById('msg-erro').innerText = "";
+            
+            if(idTela === 'dashboard' || idTela === 'tela-admin') {
+                document.getElementById('userNav').classList.remove('hidden');
+            } else {
+                document.getElementById('userNav').classList.add('hidden');
+            }
+        }
+
+        function cadastrar() {
+            const email = document.getElementById('cad-email').value.trim();
+            const senha = document.getElementById('cad-senha').value;
+
+            if (!email || !senha) return alert("Preencha todos os campos!");
+            if (!validarEmail(email)) return alert("Por favor, insira um e-mail válido (ex: seuemail@dominio.com).");
+            if (bancoDados[email]) return alert("Este e-mail já está cadastrado!");
+
+            bancoDados[email] = { senha: senha, validade: null };
+            salvarBanco();
+            
+            alert("Cadastro realizado com sucesso! Faça seu login.");
+            mostrarTela('tela-login');
+        }
+
+        function fazerLogin() {
+            const email = document.getElementById('log-email').value.trim();
+            const senha = document.getElementById('log-senha').value;
+            const usuario = bancoDados[email];
+
+            if (!email || !senha) return alert("Preencha todos os campos!");
+            if (!validarEmail(email)) return alert("Por favor, insira um e-mail válido.");
+
+            if (usuario && usuario.senha === senha) {
+                usuarioLogado = email;
+                localStorage.setItem('usuarioLogadoAtual', email);
+                verificarAcesso();
+            } else {
+                alert("E-mail ou senha incorretos!");
+            }
+        }
+
+        // O "Cadeado" Automático
+        function verificarAcesso() {
+            const dados = bancoDados[usuarioLogado];
+            if(!dados) return sair(); // Prevenção se o admin deletou a conta
+
+            const agora = new Date().getTime();
+
+            // Regra: Uma vez ativado, não pede código de novo até que a validade passe
+            if (dados.validade && dados.validade > agora) {
+                document.getElementById('navUserEmail').innerText = usuarioLogado;
+                mostrarTela('dashboard');
+                
+                const dataFormatada = new Date(dados.validade).toLocaleDateString('pt-BR') + ' às ' + new Date(dados.validade).toLocaleTimeString('pt-BR');
+                document.getElementById('data-expiracao').innerText = "Válido até: " + dataFormatada;
+                
+                initApp(); 
+            } else {
+                mostrarTela('tela-ativacao');
+            }
+        }
+
+        function ativarCodigo() {
+            const codigoDigitado = document.getElementById('input-codigo').value.trim().toUpperCase();
+
+            if (bancoCodigos[codigoDigitado]) {
+                const diasParaAdicionar = bancoCodigos[codigoDigitado];
+                adicionarDiasAoUsuario(usuarioLogado, diasParaAdicionar);
+                
+                delete bancoCodigos[codigoDigitado];
+                localStorage.setItem('bancoCodigos', JSON.stringify(bancoCodigos));
+
+                alert(`Sucesso! Você ativou ${diasParaAdicionar} dias de acesso.`);
+                verificarAcesso(); 
+            } else {
+                document.getElementById('msg-erro').innerText = "Código inválido ou já utilizado!";
+            }
+        }
+
+        function sair() {
+            usuarioLogado = null;
+            localStorage.removeItem('usuarioLogadoAtual');
+            document.getElementById('cad-email').value = "";
+            document.getElementById('cad-senha').value = "";
+            document.getElementById('log-email').value = "";
+            document.getElementById('log-senha').value = "";
+            document.getElementById('input-codigo').value = "";
+            document.getElementById('senha-admin').value = "";
+            mostrarTela('tela-login');
+        }
+
+        /* ----- PAINEL ADMIN ----- */
+        function validarSenhaAdmin() {
+            const senha = document.getElementById('senha-admin').value;
+            if (senha === "Marcelinho123.") {
+                mostrarTela('tela-admin');
+                carregarPainelAdmin();
+                carregarPainelCodigos();
+            } else {
+                alert("Senha incorreta! Acesso negado.");
+            }
+        }
+
+        function carregarPainelAdmin() {
+            const tbody = document.getElementById('tabela-usuarios');
+            tbody.innerHTML = "";
+            const emails = Object.keys(bancoDados);
+
+            if (emails.length === 0) return tbody.innerHTML = "<tr><td colspan='3'>Nenhum usuário cadastrado.</td></tr>";
+
+            emails.forEach(email => {
+                const dados = bancoDados[email];
+                const agora = new Date().getTime();
+                let status = "Sem Acesso";
+                let corStatus = "var(--danger)";
+
+                if (dados.validade && dados.validade > agora) {
+                    status = "Ativo até " + new Date(dados.validade).toLocaleDateString('pt-BR');
+                    corStatus = "var(--success)";
+                } else if (dados.validade && dados.validade <= agora) {
+                    status = "Expirado";
+                }
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${email}</strong></td>
+                    <td style="color: ${corStatus}; font-weight: bold; font-size: 0.9em;">${status}</td>
+                    <td class="admin-controls">
+                        <input type="number" id="dias-${email}" value="30" title="Dias">
+                        <button class="btn-verde" style="padding: 5px 10px;" onclick="adminLiberarAcesso('${email}')">Dar Acesso</button>
+                        <button class="btn-vermelho" style="padding: 5px 10px;" onclick="adminRemoverAcesso('${email}')">Cortar</button>
+                        <button class="btn-escuro" style="padding: 5px 10px;" onclick="adminExcluirUsuario('${email}')">Excluir</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function adminExcluirUsuario(email) {
+            if (confirm(`ATENÇÃO: Deseja excluir permanentemente a conta e os dados de ${email}?`)) {
+                delete bancoDados[email]; 
+                salvarBanco(); 
+                
+                localStorage.removeItem(`finances_data_${email}`);
+                localStorage.removeItem(`finances_limits_${email}`);
+                localStorage.removeItem(`finances_cards_${email}`);
+                localStorage.removeItem(`finances_notes_${email}`);
+                localStorage.removeItem(`finances_profile_${email}`);
+                
+                if (usuarioLogado === email) usuarioLogado = null; 
+                alert(`A conta ${email} foi excluída.`);
+                carregarPainelAdmin(); 
+            }
+        }
+
+        function carregarPainelCodigos() {
+            const tbody = document.getElementById('tabela-codigos');
+            tbody.innerHTML = "";
+            const codigos = Object.keys(bancoCodigos);
+
+            if (codigos.length === 0) return tbody.innerHTML = "<tr><td colspan='3'>Nenhum código ativo no momento.</td></tr>";
+
+            codigos.forEach(cod => {
+                const dias = bancoCodigos[cod];
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="font-weight: bold; color: var(--info);">${cod}</td>
+                    <td>${dias} dias</td>
+                    <td><button class="btn-vermelho" style="padding: 5px 10px;" onclick="adminExcluirCodigo('${cod}')">Excluir</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function adminCriarCodigo() {
+            const novoCod = document.getElementById('novo-codigo').value.trim().toUpperCase();
+            const dias = parseInt(document.getElementById('dias-codigo').value);
+            if (!novoCod || !dias) return alert("Preencha o nome do código e a quantidade de dias.");
+            if (bancoCodigos[novoCod]) return alert("Esse código já existe!");
+
+            bancoCodigos[novoCod] = dias;
+            localStorage.setItem('bancoCodigos', JSON.stringify(bancoCodigos));
+            document.getElementById('novo-codigo').value = ""; 
+            carregarPainelCodigos(); 
+        }
+
+        function adminExcluirCodigo(cod) {
+            delete bancoCodigos[cod];
+            localStorage.setItem('bancoCodigos', JSON.stringify(bancoCodigos));
+            carregarPainelCodigos();
+        }
+
+        function adminLiberarAcesso(email) {
+            const dias = parseInt(document.getElementById(`dias-${email}`).value);
+            if(dias > 0) {
+                adicionarDiasAoUsuario(email, dias);
+                alert(`Acesso liberado para ${email}!`);
+                carregarPainelAdmin();
+            }
+        }
+
+        function adminRemoverAcesso(email) {
+            bancoDados[email].validade = null;
+            salvarBanco();
+            carregarPainelAdmin();
+        }
+
+        function adicionarDiasAoUsuario(email, dias) {
+            const diasEmMs = dias * 24 * 60 * 60 * 1000;
+            const agora = new Date().getTime();
+            let validadeAtual = bancoDados[email].validade;
+
+            if (validadeAtual && validadeAtual > agora) {
+                bancoDados[email].validade = validadeAtual + diasEmMs;
+            } else {
+                bancoDados[email].validade = agora + diasEmMs;
+            }
+            salvarBanco();
+        }
+
+        function salvarBanco() {
+            localStorage.setItem('bancoUsuarios', JSON.stringify(bancoDados));
+        }
+
+
+        /* ==========================================================================
+           LÓGICA DO SISTEMA FINANCELY (DASHBOARD)
+           ========================================================================== */
+        
+        let transactions, categories, limits, notesList, creditCards, myChart;
+
+        function initApp() {
+            transactions = JSON.parse(localStorage.getItem(`finances_data_${usuarioLogado}`)) || [];
+            limits = JSON.parse(localStorage.getItem(`finances_limits_${usuarioLogado}`)) || {};
+            notesList = JSON.parse(localStorage.getItem(`finances_notes_${usuarioLogado}`)) || [];
+            creditCards = JSON.parse(localStorage.getItem(`finances_cards_${usuarioLogado}`)) || [];
+            categories = JSON.parse(localStorage.getItem(`finances_categories_${usuarioLogado}`)) || ["Alimentação", "Transporte", "Lazer", "Saúde", "Contas Fixas", "Salário", "Outros"];
+
+            if(localStorage.getItem('finances_dark') === 'true') {
+                document.body.classList.add('dark');
+                document.getElementById('darkModeIcon').className = 'fas fa-sun';
+            }
+
+            const now = new Date();
+            document.getElementById('monthFilter').value = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+            document.getElementById('expenseDate').value = now.toISOString().split('T')[0];
+
+            loadCategories();
+            loadProfileData();
+            loadPaymentMethods();
+            renderNotes();
+            updateUI();
+        }
+
+        window.onload = () => {
+            if (usuarioLogado) {
+                verificarAcesso();
+            } else {
+                mostrarTela('tela-login');
+            }
+        };
+
+        function saveData() {
+            localStorage.setItem(`finances_data_${usuarioLogado}`, JSON.stringify(transactions));
+            updateUI();
+            if(!document.getElementById('tabAnalise').classList.contains('hidden')) renderAnalysis();
+            if(!document.getElementById('tabCartoes').classList.contains('hidden')) renderCards();
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+            const isDark = document.body.classList.contains('dark');
+            localStorage.setItem('finances_dark', isDark);
+            document.getElementById('darkModeIcon').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            if(myChart) updateChart(getFilteredTransactions());
+        }
+
+        function switchTab(tab) {
+            ['tabInicio', 'tabAnalise', 'tabCartoes', 'tabMetas', 'tabPerfil', 'tabAnotacoes'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            ['btnTabInicio', 'btnTabAnalise', 'btnTabCartoes', 'btnTabMetas', 'btnTabPerfil', 'btnTabAnotacoes'].forEach(id => {
+                document.getElementById(id).classList.remove('active');
+            });
+
+            document.getElementById('mainToolbar').classList.add('hidden');
+
+            if(tab === 'inicio') {
+                document.getElementById('tabInicio').classList.remove('hidden');
+                document.getElementById('btnTabInicio').classList.add('active');
+                document.getElementById('mainToolbar').classList.remove('hidden');
+                updateUI();
+            } else if(tab === 'analise') {
+                document.getElementById('tabAnalise').classList.remove('hidden');
+                document.getElementById('btnTabAnalise').classList.add('active');
+                document.getElementById('mainToolbar').classList.remove('hidden'); 
+                renderAnalysis();
+            } else if(tab === 'cartoes') {
+                document.getElementById('tabCartoes').classList.remove('hidden');
+                document.getElementById('btnTabCartoes').classList.add('active');
+                document.getElementById('mainToolbar').classList.remove('hidden');
+                renderCards();
+            } else if(tab === 'metas') {
+                document.getElementById('tabMetas').classList.remove('hidden');
+                document.getElementById('btnTabMetas').classList.add('active');
+                renderMetas();
+            } else if(tab === 'perfil') {
+                document.getElementById('tabPerfil').classList.remove('hidden');
+                document.getElementById('btnTabPerfil').classList.add('active');
+            } else if(tab === 'anotacoes') {
+                document.getElementById('tabAnotacoes').classList.remove('hidden');
+                document.getElementById('btnTabAnotacoes').classList.add('active');
+            }
+        }
+
+        /* --- MÉTODOS DE CARTÕES --- */
+        function addCard() {
+            const name = document.getElementById('cardName').value;
+            const limit = parseFloat(document.getElementById('cardLimit').value);
+            if (!name || isNaN(limit) || limit <= 0) return alert("Insira um nome e um limite válido.");
+
+            creditCards.push({ id: 'card_' + Date.now(), name: name, limit: limit });
+            localStorage.setItem(`finances_cards_${usuarioLogado}`, JSON.stringify(creditCards));
+            
+            document.getElementById('cardName').value = ''; document.getElementById('cardLimit').value = '';
+            loadPaymentMethods(); renderCards();
+        }
+
+        function deleteCard(id) {
+            if(confirm("Deseja realmente excluir este cartão? As despesas dele passarão para a Conta Principal.")) {
+                creditCards = creditCards.filter(c => c.id !== id);
+                localStorage.setItem(`finances_cards_${usuarioLogado}`, JSON.stringify(creditCards));
+                transactions.forEach(t => { if(t.paymentMethod === id) t.paymentMethod = 'main'; });
+                saveData(); loadPaymentMethods(); renderCards();
+            }
+        }
+
+        function renderCards() {
+            const container = document.getElementById('cardsList'); container.innerHTML = '';
+            const filteredTrans = getFilteredTransactions();
+
+            if(creditCards.length === 0) return container.innerHTML = '<p style="color:var(--text-muted);">Nenhum cartão cadastrado.</p>';
+
+            creditCards.forEach(c => {
+                let spentThisMonth = 0;
+                filteredTrans.forEach(t => { if(t.paymentMethod === c.id && t.type === 'expense') spentThisMonth += t.amount; });
+
+                let available = c.limit - spentThisMonth;
+                let percent = (spentThisMonth / c.limit) * 100;
+                let barWidth = percent > 100 ? 100 : percent;
+                let colorClass = percent >= 90 ? 'danger' : (percent >= 75 ? 'warning' : '');
+
+                container.innerHTML += `
+                    <div class="credit-card-box">
+                        <button onclick="deleteCard('${c.id}')" style="position:absolute; top:15px; right:15px; background:none; border:none; color:#f87171; cursor:pointer;"><i class="fas fa-trash"></i></button>
+                        <div class="chip"></div><h4>Cartão ${c.name}</h4>
+                        <div style="margin-top: 15px;">
+                            <div style="display:flex; justify-content:space-between; font-size: 0.85rem; margin-bottom: 5px; color:#e2e8f0;">
+                                <span>Fatura Atual: <strong>R$ ${spentThisMonth.toFixed(2)}</strong></span>
+                                <span>Livre: R$ ${available.toFixed(2)}</span>
+                            </div>
+                            <div class="progress-bar" style="background: rgba(255,255,255,0.2); border: none;">
+                                <div class="progress-fill ${colorClass}" style="width: ${barWidth}%; background-color: ${colorClass=='' ? '#10b981' : ''};"></div>
+                            </div>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function loadPaymentMethods() {
+            const select = document.getElementById('expensePaymentMethod');
+            select.innerHTML = '<option value="main">Conta Principal / Dinheiro</option>';
+            creditCards.forEach(c => select.innerHTML += `<option value="${c.id}">💳 Cartão: ${c.name}</option>`);
+        }
+
+        /* --- PERFIL E NOTAS --- */
+        function loadProfileData() {
+            const profile = JSON.parse(localStorage.getItem(`finances_profile_${usuarioLogado}`)) || {};
+            document.getElementById('profileName').value = profile.name || '';
+            document.getElementById('profileJob').value = profile.job || '';
+        }
+
+        function saveProfile() {
+            const profile = { name: document.getElementById('profileName').value, job: document.getElementById('profileJob').value };
+            localStorage.setItem(`finances_profile_${usuarioLogado}`, JSON.stringify(profile));
+            const fb = document.getElementById('profileFeedback'); fb.style.display = 'block'; setTimeout(() => fb.style.display = 'none', 3000);
+        }
+
+        function addNote() {
+            const title = document.getElementById('noteTitle').value, text = document.getElementById('noteText').value;
+            if(!text) return alert("A anotação não pode estar vazia.");
+            notesList.unshift({ id: Date.now(), title: title || 'Sem título', text: text, date: new Date().toLocaleDateString('pt-BR') });
+            localStorage.setItem(`finances_notes_${usuarioLogado}`, JSON.stringify(notesList));
+            document.getElementById('noteTitle').value = ''; document.getElementById('noteText').value = ''; renderNotes();
+        }
+
+        function deleteNote(id) {
+            notesList = notesList.filter(n => n.id !== id);
+            localStorage.setItem(`finances_notes_${usuarioLogado}`, JSON.stringify(notesList)); renderNotes();
+        }
+
+        function renderNotes() {
+            const container = document.getElementById('notesContainer'); container.innerHTML = '';
+            if(notesList.length === 0) return container.innerHTML = '<p style="color:var(--text-muted);">Nenhuma anotação salva ainda.</p>';
+            notesList.forEach(n => {
+                container.innerHTML += `
+                    <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; position:relative;">
+                        <button onclick="deleteNote(${n.id})" style="position:absolute; top:10px; right:10px; background:none; border:none; color:var(--danger); cursor:pointer;"><i class="fas fa-trash"></i></button>
+                        <h4 style="margin-bottom:0.5rem; color:var(--primary); font-size:1rem;">${n.title}</h4>
+                        <p style="color:var(--text-main); white-space: pre-wrap; font-size:0.95rem;">${n.text}</p>
+                        <small style="color:var(--text-muted); display:block; margin-top:10px; font-size:0.8rem;">Criado em: ${n.date}</small>
+                    </div>`;
+            });
+        }
+
+        /* --- CATEGORIAS --- */
+        function loadCategories() {
+            const selectExp = document.getElementById('expenseCategory'), selectLim = document.getElementById('limitCategory');
+            selectExp.innerHTML = ''; selectLim.innerHTML = '<option value="Geral">Orçamento Geral</option>';
+            categories.forEach(cat => { selectExp.innerHTML += `<option value="${cat}">${cat}</option>`; selectLim.innerHTML += `<option value="${cat}">${cat}</option>`; });
+        }
+
+        function manageCategories() {
+            const acao = prompt("Digite 1 para ADICIONAR uma categoria ou 2 para REMOVER:");
+            if (acao === '1') {
+                const nova = prompt("Nome da nova categoria:");
+                if (nova && !categories.includes(nova)) { categories.push(nova); localStorage.setItem(`finances_categories_${usuarioLogado}`, JSON.stringify(categories)); loadCategories(); }
+            } else if (acao === '2') {
+                const lista = categories.map((c, i) => `${i}: ${c}`).join('\n');
+                const idx = prompt(`Digite o número para remover:\n${lista}`);
+                if (idx !== null && categories[idx]) { categories.splice(idx, 1); localStorage.setItem(`finances_categories_${usuarioLogado}`, JSON.stringify(categories)); loadCategories(); }
+            }
+        }
+
+        /* --- TRANSAÇÕES CRUD --- */
+        function toggleFormFields() {
+            const isExpense = document.getElementById('expenseType').value === 'expense';
+            document.getElementById('expensePriority').style.display = isExpense ? 'block' : 'none';
+            document.getElementById('paymentMethodContainer').style.display = isExpense ? 'block' : 'none';
+        }
+
+        function saveTransaction() {
+            const editId = document.getElementById('editId').value, type = document.getElementById('expenseType').value;
+            const name = document.getElementById('expenseName').value, amount = parseFloat(document.getElementById('expenseAmount').value);
+            const date = document.getElementById('expenseDate').value, category = document.getElementById('expenseCategory').value;
+            const priority = type === 'expense' ? document.getElementById('expensePriority').value : 'N/A';
+            const paymentMethod = type === 'expense' ? document.getElementById('expensePaymentMethod').value : 'main';
+
+            if (!name || isNaN(amount) || amount <= 0 || !date) return alert("Dados inválidos. Verifique os campos.");
+
+            if (editId) {
+                const index = transactions.findIndex(t => t.id == editId);
+                if (index > -1) transactions[index] = { id: parseInt(editId), type, name, amount, date, category, priority, paymentMethod };
+                cancelEdit();
+            } else {
+                transactions.unshift({ id: Date.now(), type, name, amount, date, category, priority, paymentMethod });
+            }
+
+            saveData(); document.getElementById('expenseName').value = ''; document.getElementById('expenseAmount').value = '';
+        }
+
+        function editTransaction(id) {
+            const t = transactions.find(t => t.id === id); if(!t) return;
+            document.getElementById('editId').value = t.id; document.getElementById('expenseType').value = t.type || 'expense'; toggleFormFields();
+            document.getElementById('expenseName').value = t.name; document.getElementById('expenseAmount').value = t.amount;
+            
+            let fDate = t.date; if(fDate.includes('/')) { const parts = fDate.split('/'); fDate = `${parts[2]}-${parts[1]}-${parts[0]}`; }
+            document.getElementById('expenseDate').value = fDate; document.getElementById('expenseCategory').value = t.category;
+            
+            if(t.type !== 'income') { if(t.priority) document.getElementById('expensePriority').value = t.priority; if(t.paymentMethod) document.getElementById('expensePaymentMethod').value = t.paymentMethod; }
+
+            document.getElementById('formTitle').innerText = 'Editar Transação'; document.getElementById('btnSaveTransaction').innerText = 'Salvar Alterações';
+            document.getElementById('btnCancelEdit').classList.remove('hidden'); switchTab('inicio');
+        }
+
+        function cancelEdit() {
+            document.getElementById('editId').value = ''; document.getElementById('formTitle').innerText = 'Nova Transação';
+            document.getElementById('btnSaveTransaction').innerText = 'Adicionar Transação'; document.getElementById('btnCancelEdit').classList.add('hidden');
+            document.getElementById('expenseName').value = ''; document.getElementById('expenseAmount').value = '';
+        }
+
+        function deleteTransaction(id) { if(confirm("Excluir esta transação?")) { transactions = transactions.filter(t => t.id !== id); saveData(); } }
+
+        function exportData() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(transactions));
+            const dl = document.createElement('a'); dl.setAttribute("href", dataStr); dl.setAttribute("download", `financely_${usuarioLogado}.json`); dl.click();
+        }
+
+        function clearData() {
+            if(confirm("Isso apagará TODOS os seus dados financeiros (transações, cartões, notas). Tem certeza?")) {
+                localStorage.removeItem(`finances_data_${usuarioLogado}`); localStorage.removeItem(`finances_limits_${usuarioLogado}`);
+                localStorage.removeItem(`finances_notes_${usuarioLogado}`); localStorage.removeItem(`finances_cards_${usuarioLogado}`);
+                transactions = []; limits = {}; notesList = []; creditCards = []; updateUI(); renderNotes(); loadPaymentMethods();
+            }
+        }
+
+        function getFilteredTransactions() {
+            const filterMonth = document.getElementById('monthFilter').value; if(!filterMonth) return transactions;
+            return transactions.filter(t => { let tDate = t.date; if(tDate.includes('/')) { const parts = tDate.split('/'); tDate = `${parts[2]}-${parts[1]}-${parts[0]}`; } return tDate.startsWith(filterMonth); });
+        }
+
+        function updateUI() {
+            const filtered = getFilteredTransactions(), list = document.getElementById('expenseList'); list.innerHTML = '';
+            let totalIncome = 0, totalExpense = 0;
+
+            filtered.forEach(t => {
+                const type = t.type || 'expense'; 
+                if(type === 'income') totalIncome += t.amount; if(type === 'expense') totalExpense += t.amount;
+
+                let displayDate = t.date; if(t.date.includes('-')) { const [y, m, d] = t.date.split('-'); displayDate = `${d}/${m}/${y}`; }
+                let badgeHTML = '';
+                if(type === 'expense') {
+                    const prio = t.priority || 'Importante'; badgeHTML += `<span class="badge badge-${prio.toLowerCase().replace('é', 'e')}">${prio}</span>`;
+                    if(t.paymentMethod && t.paymentMethod !== 'main') {
+                        const cardFound = creditCards.find(c => c.id === t.paymentMethod);
+                        badgeHTML += `<span class="badge badge-card"><i class="fas fa-credit-card"></i> ${cardFound ? cardFound.name : 'Cartão'}</span>`;
+                    }
+                }
+
+                const li = document.createElement('li'); li.className = `type-${type}`;
+                li.innerHTML = `
+                    <div><strong>${t.name}</strong> ${badgeHTML}<br><small style="color:var(--text-muted)">${t.category} • ${displayDate}</small></div>
+                    <div style="display:flex; align-items:center; gap:10px">
+                        <span style="font-weight:700; color: var(--${type === 'income' ? 'success' : 'danger'})">${type === 'income' ? '+' : '-'} R$ ${t.amount.toFixed(2)}</span>
+                        <button class="action-btn edit-btn" onclick="editTransaction(${t.id})"><i class="fas fa-pen"></i></button>
+                        <button class="action-btn delete-btn" onclick="deleteTransaction(${t.id})"><i class="fas fa-trash-alt"></i></button>
+                    </div>`;
+                list.appendChild(li);
+            });
+
+            const balance = totalIncome - totalExpense;
+            document.getElementById('totalIncome').innerText = `R$ ${totalIncome.toFixed(2)}`; document.getElementById('totalExpense').innerText = `R$ ${totalExpense.toFixed(2)}`;
+            document.getElementById('totalBalance').innerText = `R$ ${balance.toFixed(2)}`; document.getElementById('totalBalance').style.color = balance < 0 ? 'var(--danger)' : 'var(--primary)';
+
+            updateChart(filtered);
+            if(!document.getElementById('tabMetas').classList.contains('hidden')) renderMetas();
+            if(!document.getElementById('tabAnalise').classList.contains('hidden')) renderAnalysis();
+            if(!document.getElementById('tabCartoes').classList.contains('hidden')) renderCards();
+        }
+
+        function updateChart(filteredData) {
+            const ctx = document.getElementById('expenseChart').getContext('2d'), isDark = document.body.classList.contains('dark');
+            Chart.defaults.color = isDark ? '#f8fafc' : '#64748b';
+
+            const categoryTotals = {}; filteredData.forEach(t => { if((t.type || 'expense') === 'expense') categoryTotals[t.category] = (categoryTotals[t.category] || 0) + t.amount; });
+
+            if (myChart) myChart.destroy();
+            myChart = new Chart(ctx, {
+                type: document.getElementById('chartType').value,
+                data: { labels: Object.keys(categoryTotals), datasets: [{ label: 'Despesas', data: Object.values(categoryTotals), backgroundColor: ['#f59e0b', '#10b981', '#ef4444', '#3b82f6', '#8b5cf6', '#06b6d4', '#ec4899'], borderWidth: 2, borderColor: isDark ? '#1e293b' : '#ffffff', borderRadius: 5 }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+            });
+        }
+
+        /* --- ABA DE ANÁLISE --- */
+        function renderAnalysis() {
+            const filtered = getFilteredTransactions(), listObj = {}; let totalDespesas = 0, totalEssencial = 0, totalImportante = 0, totalSuperfluo = 0;
+            filtered.forEach(t => {
+                if((t.type || 'expense') === 'expense') {
+                    if(!listObj[t.category]) listObj[t.category] = 0; listObj[t.category] += t.amount; totalDespesas += t.amount;
+                    const prio = t.priority || 'Importante';
+                    if(prio === 'Essencial') totalEssencial += t.amount; if(prio === 'Importante') totalImportante += t.amount; if(prio === 'Superfluo') totalSuperfluo += t.amount;
+                }
+            });
+
+            const sortedCategories = Object.entries(listObj).sort((a, b) => b[1] - a[1]), listEl = document.getElementById('analysisCategoryList'); listEl.innerHTML = '';
+            if(sortedCategories.length === 0) {
+                listEl.innerHTML = '<li style="justify-content:center; color:var(--text-muted);">Nenhuma despesa neste mês.</li>';
+                document.getElementById('analysisInsights').innerHTML = ''; document.getElementById('priorityBars').innerHTML = ''; return;
+            }
+
+            sortedCategories.forEach(([cat, amt]) => {
+                let perc = ((amt / totalDespesas) * 100).toFixed(1);
+                listEl.innerHTML += `<li style="display:flex; justify-content:space-between; padding:10px; background:var(--card); border:1px solid var(--border); border-radius:8px; margin-bottom:10px;"><div style="font-weight:600;">${cat}</div><div style="text-align:right;"><span style="color:var(--danger); font-weight:700;">R$ ${amt.toFixed(2)}</span><br><small style="color:var(--text-muted);">${perc}% das despesas</small></div></li>`;
+            });
+
+            const topCategory = sortedCategories[0], insightsEl = document.getElementById('analysisInsights');
+            let insightHTML = `<div class="insight-box"><h4>Maior Gasto</h4><p>Sua categoria com maior custo está sendo <strong>${topCategory[0]}</strong> (R$ ${topCategory[1].toFixed(2)}).</p></div>`;
+            if(totalSuperfluo > (totalDespesas * 0.3)) insightHTML += `<div class="insight-box" style="border-left-color: var(--danger);"><h4 style="color: var(--danger);">Alerta de Supérfluos</h4><p>Mais de 30% do orçamento foi em supérfluos.</p></div>`;
+            insightsEl.innerHTML = insightHTML;
+
+            const prioBarsEl = document.getElementById('priorityBars'); prioBarsEl.innerHTML = '';
+            [{name: 'Essencial', val: totalEssencial, color: 'var(--info)'}, {name: 'Importante', val: totalImportante, color: 'var(--primary)'}, {name: 'Supérfluo', val: totalSuperfluo, color: 'var(--danger)'}].forEach(p => {
+                let perc = totalDespesas > 0 ? ((p.val / totalDespesas) * 100) : 0;
+                prioBarsEl.innerHTML += `<div class="progress-wrapper"><div class="progress-header"><span>${p.name}</span><span>R$ ${p.val.toFixed(2)} (${perc.toFixed(0)}%)</span></div><div class="progress-bar"><div class="progress-fill" style="width: ${perc}%; background-color: ${p.color};"></div></div></div>`;
+            });
+        }
+
+        /* --- LIMITES E METAS --- */
+        function addLimit() {
+            const cat = document.getElementById('limitCategory').value, amt = parseFloat(document.getElementById('limitAmount').value);
+            if(isNaN(amt) || amt <= 0) return alert("Insira um valor válido.");
+            limits[cat] = amt; localStorage.setItem(`finances_limits_${usuarioLogado}`, JSON.stringify(limits)); document.getElementById('limitAmount').value = ''; renderMetas();
+        }
+
+        function removeLimit(cat) { delete limits[cat]; localStorage.setItem(`finances_limits_${usuarioLogado}`, JSON.stringify(limits)); renderMetas(); }
+
+        function renderMetas() {
+            const list = document.getElementById('limitsList'); list.innerHTML = ''; const filtered = getFilteredTransactions();
+            if(Object.keys(limits).length === 0) return list.innerHTML = '<p style="color:var(--text-muted); text-align:center;">Nenhum limite definido.</p>';
+
+            for (const [cat, limit] of Object.entries(limits)) {
+                let spent = 0; filtered.forEach(t => { if((t.type || 'expense') === 'expense' && (cat === 'Geral' || t.category === cat)) spent += t.amount; });
+                let percent = (spent / limit) * 100, displayPercent = percent > 99 ? (percent >= 100 ? 100 : 99) : percent.toFixed(0), barWidth = percent > 100 ? 100 : percent;
+                let colorClass = percent >= 100 ? 'danger' : (percent >= 80 ? 'warning' : '');
+
+                list.innerHTML += `<div class="progress-wrapper"><div class="progress-header"><span>${cat} <button onclick="removeLimit('${cat}')" style="background:none; border:none; color:var(--danger); cursor:pointer;"><i class="fas fa-times"></i></button></span><span>R$ ${spent.toFixed(2)} / R$ ${limit.toFixed(2)} (${displayPercent}%)</span></div><div class="progress-bar"><div class="progress-fill ${colorClass}" style="width: ${barWidth}%"></div></div></div>`;
+            }
+        }
+    </script>
+</body>
+</html>
