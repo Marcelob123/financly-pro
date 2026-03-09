@@ -247,7 +247,9 @@
                 <h2>Ativação Necessária ⚠️</h2>
                 <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Sua conta está inativa ou o tempo expirou. Insira seu código de acesso VIP.</p>
                 <input type="text" id="input-codigo" placeholder="Digite o código (Ex: VIP30)" style="text-transform: uppercase; font-weight: bold; text-align: center;">
+                
                 <button class="btn-verde" style="width: 100%; margin-bottom: 10px;" onclick="ativarCodigo()">Validar Código</button>
+                
                 <p id="msg-erro" style="color: var(--danger); font-size: 0.9em; margin-bottom: 10px; font-weight: 600;"></p>
                 <button class="btn-vermelho" style="width: 100%;" onclick="sair()">Sair da Conta</button>
             </div>
@@ -410,7 +412,7 @@
                 
                 if(forcarAtualizacao) {
                     carregarPainelAdmin();
-                    carregarPainelCodigos(); // Atualiza também os códigos
+                    carregarPainelCodigos(); 
                     alert("Dados atualizados com a nuvem!");
                 }
             } catch (error) {
@@ -497,10 +499,15 @@
         }
 
         // ==========================================
-        // CÓDIGO CORRIGIDO: ATIVAÇÃO VIA NUVEM
+        // FUNÇÃO CORRIGIDA (AGORA ESTÁ ESCRITA CERTO!)
         // ==========================================
         async function ativarCodigo() {
             const codigoDigitado = document.getElementById('input-codigo').value.trim().toUpperCase();
+            
+            if(!codigoDigitado) {
+                document.getElementById('msg-erro').innerText = "Por favor, digite um código primeiro.";
+                return;
+            }
 
             await carregarBanco(); // Busca os dados mais recentes na nuvem
             const codData = bancoDados[codigoDigitado];
@@ -614,9 +621,7 @@
             carregarPainelAdmin();
         }
 
-        // ==========================================
-        // CÓDIGO CORRIGIDO: GERADOR NA NUVEM
-        // ==========================================
+        /* --- CÓDIGOS ADMIN --- */
         function carregarPainelCodigos() {
             const tbody = document.getElementById('tabela-codigos'); tbody.innerHTML = "";
             const chaves = Object.keys(bancoDados);
@@ -644,7 +649,7 @@
             await carregarBanco(); 
             if (bancoDados[novoCod]) return alert("Esse código (ou e-mail) já existe no banco de dados!");
 
-            // Cadastra o código na nuvem como se fosse um usuário "Voucher"
+            // Cadastra o código na nuvem
             await enviarParaNuvem({ acao: 'cadastrar', email: novoCod, senha: 'CODE', validade: dias, status: 'Voucher' });
             
             document.getElementById('novo-codigo').value = ""; 
@@ -657,7 +662,6 @@
                 carregarPainelCodigos(); 
             }
         }
-
 
         /* ==========================================================================
            LÓGICA DO SISTEMA FINANCELY (DASHBOARD)
