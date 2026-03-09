@@ -90,7 +90,6 @@
             font-weight: 700; cursor: pointer; transition: 0.2s;
         }
         .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
-        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
 
         .btn-secondary { background: var(--bg); color: var(--text-main); border: 1px solid var(--border); cursor: pointer; padding: 0.8rem; border-radius: 8px; font-weight: 600;}
         .btn-secondary:hover { opacity: 0.8; }
@@ -246,7 +245,7 @@
         <section id="tela-ativacao" class="view-section auth-wrapper">
             <div class="auth-container">
                 <h2>Ativação Necessária ⚠️</h2>
-                <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Sua conta está inativa ou o tempo expirou. Insira seu código de acceso VIP.</p>
+                <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Sua conta está inativa ou o tempo expirou. Insira seu código de acesso VIP.</p>
                 <input type="text" id="input-codigo" placeholder="Digite o código (Ex: VIP30)" style="text-transform: uppercase; font-weight: bold; text-align: center;">
                 <button class="btn-verde" style="width: 100%; margin-bottom: 10px;" onclick="ativarCodigo()">Validar Código</button>
                 <p id="msg-erro" style="color: var(--danger); font-size: 0.9em; margin-bottom: 10px; font-weight: 600;"></p>
@@ -266,7 +265,7 @@
 
         <section id="tela-admin" class="view-section admin-wrapper">
             <div class="card">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 10px;">
                     <h2>Painel do Administrador ⚙️</h2>
                     <button class="btn-secondary" onclick="carregarBanco(true)"><i class="fas fa-sync"></i> Atualizar Nuvem</button>
                 </div>
@@ -289,7 +288,7 @@
 
                 <div class="admin-section">
                     <h3>🔑 Gerador de Códigos de Acesso</h3>
-                    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 1rem;">Códigos salvos no seu navegador para distribuição rápida.</p>
+                    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 1rem;">Os códigos gerados aqui são salvos diretamente na planilha e podem ser usados por qualquer usuário.</p>
                     <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1rem;">
                         <input type="text" id="novo-codigo" placeholder="Ex: PROMOCAO30" style="text-transform: uppercase; flex: 1; min-width: 200px;">
                         <input type="number" id="dias-codigo" placeholder="Qtd Dias" value="30" style="width: 120px;">
@@ -381,78 +380,11 @@
                 </div>
             </div>
 
-            <div id="tabCartoes" class="hidden">
-                <div class="main-grid">
-                    <div class="card">
-                        <h3>Adicionar Cartão de Crédito</h3>
-                        <input type="text" id="cardName" placeholder="Ex: Nubank, Itaú, Black...">
-                        <input type="number" id="cardLimit" placeholder="0.00" step="0.01">
-                        <button class="btn-primary" onclick="addCard()">Salvar Cartão</button>
-                    </div>
-                    <div class="card">
-                        <h3>Meus Cartões</h3>
-                        <div id="cardsList" style="margin-top: 1rem;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="tabAnalise" class="hidden">
-                <div class="main-grid">
-                    <div class="card">
-                        <h3>Detalhes por Categoria (Neste Mês)</h3>
-                        <ul id="analysisCategoryList" style="max-height: none; overflow: visible; padding-left:0; list-style:none;"></ul>
-                    </div>
-                    <div class="card">
-                        <h3>Diagnóstico de Prioridades</h3>
-                        <div id="analysisInsights"></div>
-                        <div style="margin-top: 2rem;">
-                            <h4>Gasto por Nível de Prioridade</h4>
-                            <div id="priorityBars"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="tabMetas" class="hidden">
-                <div class="main-grid">
-                    <div class="card">
-                        <h3>Definir Limite Mensal</h3>
-                        <select id="limitCategory"></select>
-                        <input type="number" id="limitAmount" placeholder="Valor Limite R$" step="0.01">
-                        <button class="btn-primary" onclick="addLimit()">Salvar Limite</button>
-                    </div>
-                    <div class="card">
-                        <h3>Progresso do Mês Atual</h3>
-                        <div id="limitsList" style="margin-top: 1.5rem;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="tabPerfil" class="hidden">
-                <div class="card" style="max-width: 600px; margin: 0 auto;">
-                    <h3>Informações do Perfil</h3>
-                    <input type="text" id="profileName" placeholder="Seu Nome">
-                    <input type="text" id="profileJob" placeholder="Ex: Desenvolvedor, Empreendedor...">
-                    <button class="btn-primary" onclick="saveProfile()">Salvar Dados</button>
-                    <p id="profileFeedback" style="color: var(--success); font-weight: 600; margin-top: 10px; display: none;">Dados salvos com sucesso!</p>
-                </div>
-            </div>
-
-            <div id="tabAnotacoes" class="hidden">
-                <div class="main-grid">
-                    <div class="card">
-                        <h3>Nova Anotação</h3>
-                        <input type="text" id="noteTitle" placeholder="Título da anotação...">
-                        <textarea id="noteText" rows="5" placeholder="Escreva os detalhes aqui..."></textarea>
-                        <button class="btn-primary" onclick="addNote()">Salvar Anotação</button>
-                    </div>
-                    <div class="card">
-                        <h3>Suas Anotações</h3>
-                        <div id="notesContainer" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem;"></div>
-                    </div>
-                </div>
-            </div>
-
+            <div id="tabCartoes" class="hidden"><div class="main-grid"><div class="card"><h3>Adicionar Cartão de Crédito</h3><input type="text" id="cardName" placeholder="Ex: Nubank, Itaú..."><input type="number" id="cardLimit" placeholder="0.00" step="0.01"><button class="btn-primary" onclick="addCard()">Salvar Cartão</button></div><div class="card"><h3>Meus Cartões</h3><div id="cardsList" style="margin-top: 1rem;"></div></div></div></div>
+            <div id="tabAnalise" class="hidden"><div class="main-grid"><div class="card"><h3>Detalhes por Categoria</h3><ul id="analysisCategoryList" style="max-height: none; overflow: visible; padding-left:0; list-style:none;"></ul></div><div class="card"><h3>Diagnóstico de Prioridades</h3><div id="analysisInsights"></div><div style="margin-top: 2rem;"><h4>Gasto por Nível de Prioridade</h4><div id="priorityBars"></div></div></div></div></div>
+            <div id="tabMetas" class="hidden"><div class="main-grid"><div class="card"><h3>Definir Limite Mensal</h3><select id="limitCategory"></select><input type="number" id="limitAmount" placeholder="Valor Limite R$" step="0.01"><button class="btn-primary" onclick="addLimit()">Salvar Limite</button></div><div class="card"><h3>Progresso do Mês Atual</h3><div id="limitsList" style="margin-top: 1.5rem;"></div></div></div></div>
+            <div id="tabPerfil" class="hidden"><div class="card" style="max-width: 600px; margin: 0 auto;"><h3>Informações do Perfil</h3><input type="text" id="profileName" placeholder="Seu Nome"><input type="text" id="profileJob" placeholder="Ex: Desenvolvedor..."><button class="btn-primary" onclick="saveProfile()">Salvar Dados</button><p id="profileFeedback" style="color: var(--success); font-weight: 600; margin-top: 10px; display: none;">Salvo com sucesso!</p></div></div>
+            <div id="tabAnotacoes" class="hidden"><div class="main-grid"><div class="card"><h3>Nova Anotação</h3><input type="text" id="noteTitle" placeholder="Título da anotação..."><textarea id="noteText" rows="5" placeholder="Escreva os detalhes aqui..."></textarea><button class="btn-primary" onclick="addNote()">Salvar Anotação</button></div><div class="card"><h3>Suas Anotações</h3><div id="notesContainer" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem;"></div></div></div></div>
         </section>
     </main>
 
@@ -461,18 +393,15 @@
            LÓGICA DE SEGURANÇA E ADMINISTRAÇÃO (CONECTADA AO GOOGLE SHEETS)
            ========================================================================== */
         
-        // --- A URL DA SUA PLANILHA ---
         const API_URL = "https://script.google.com/macros/s/AKfycbzRXtQ2X5Xb7TT6FIYk3tOZ6I-3MpqLZOTUiej2fCxupkZmy57Ze5LKy0vjm8dCbg0UEQ/exec";
         
         let bancoDados = {};
-        let bancoCodigos = JSON.parse(localStorage.getItem('bancoCodigos')) || {};
         let usuarioLogado = localStorage.getItem('usuarioLogadoAtual') || null;
 
         function mostrarLoading(mostrar) {
             document.getElementById('loadingOverlay').style.display = mostrar ? 'flex' : 'none';
         }
 
-        // Função para buscar dados da Planilha (Nuvem)
         async function carregarBanco(forcarAtualizacao = false) {
             mostrarLoading(true);
             try {
@@ -481,6 +410,7 @@
                 
                 if(forcarAtualizacao) {
                     carregarPainelAdmin();
+                    carregarPainelCodigos(); // Atualiza também os códigos
                     alert("Dados atualizados com a nuvem!");
                 }
             } catch (error) {
@@ -490,7 +420,6 @@
             mostrarLoading(false);
         }
 
-        // Função genérica para enviar ordens ao Google Sheets
         async function enviarParaNuvem(dadosPost) {
             mostrarLoading(true);
             try {
@@ -499,7 +428,7 @@
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify(dadosPost)
                 });
-                await carregarBanco(); // Atualiza os dados locais após enviar
+                await carregarBanco(); 
             } catch (error) {
                 console.error("Erro de comunicação:", error);
                 alert("Houve um erro na comunicação com o banco de dados.");
@@ -523,13 +452,10 @@
             if (!email || !senha) return alert("Preencha todos os campos!");
             if (!validarEmail(email)) return alert("Por favor, insira um e-mail válido.");
             
-            await carregarBanco(); // Verifica atualizações
+            await carregarBanco(); 
             if (bancoDados[email]) return alert("Este e-mail já está cadastrado!");
 
-            // Envia para o Google Sheets
-            await enviarParaNuvem({
-                acao: 'cadastrar', email: email, senha: senha, validade: '', status: 'Inativo'
-            });
+            await enviarParaNuvem({ acao: 'cadastrar', email: email, senha: senha, validade: '', status: 'Inativo' });
             
             alert("Cadastro na Nuvem realizado com sucesso! Faça seu login.");
             mostrarTela('tela-login');
@@ -542,10 +468,10 @@
             if (!email || !senha) return alert("Preencha todos os campos!");
             if (!validarEmail(email)) return alert("E-mail inválido.");
 
-            await carregarBanco(); // Puxa dados frescos da nuvem
+            await carregarBanco(); 
             const usuario = bancoDados[email];
 
-            if (usuario && usuario.senha == senha) { // Usa '==' pq as vezes sheet converte senha numero pra int
+            if (usuario && usuario.senha == senha) { 
                 usuarioLogado = email;
                 localStorage.setItem('usuarioLogadoAtual', email);
                 verificarAcesso();
@@ -559,31 +485,37 @@
             if(!dados) return sair(); 
 
             const agora = new Date().getTime();
-            // Verifica se tem validade e se é maior que agora
             if (dados.validade && parseInt(dados.validade) > agora) {
                 document.getElementById('navUserEmail').innerText = usuarioLogado;
                 mostrarTela('dashboard');
-                
                 const dataFormatada = new Date(parseInt(dados.validade)).toLocaleDateString('pt-BR') + ' às ' + new Date(parseInt(dados.validade)).toLocaleTimeString('pt-BR');
                 document.getElementById('data-expiracao').innerText = "Válido até: " + dataFormatada;
-                
                 initApp(); 
             } else {
                 mostrarTela('tela-ativacao');
             }
         }
 
-        async function activarCodigo() {
+        // ==========================================
+        // CÓDIGO CORRIGIDO: ATIVAÇÃO VIA NUVEM
+        // ==========================================
+        async function ativarCodigo() {
             const codigoDigitado = document.getElementById('input-codigo').value.trim().toUpperCase();
 
-            if (bancoCodigos[codigoDigitado]) {
-                const diasParaAdicionar = bancoCodigos[codigoDigitado];
-                await adminLiberarAcessoInterno(usuarioLogado, diasParaAdicionar); // Salva na Nuvem
-                
-                delete bancoCodigos[codigoDigitado];
-                localStorage.setItem('bancoCodigos', JSON.stringify(bancoCodigos));
+            await carregarBanco(); // Busca os dados mais recentes na nuvem
+            const codData = bancoDados[codigoDigitado];
 
-                alert(`Sucesso! Você ativou ${diasParaAdicionar} dias de acceso.`);
+            // Verifica se o código existe e se o status dele é "Voucher"
+            if (codData && codData.status === 'Voucher') {
+                const diasParaAdicionar = parseInt(codData.validade);
+                
+                // 1. Libera o acesso do usuário na nuvem
+                await adminLiberarAcessoInterno(usuarioLogado, diasParaAdicionar);
+                
+                // 2. Apaga o código da nuvem para ninguém mais usar
+                await enviarParaNuvem({ acao: 'excluir', email: codigoDigitado });
+
+                alert(`Sucesso! Você ativou ${diasParaAdicionar} dias de acesso VIP.`);
                 verificarAcesso(); 
             } else {
                 document.getElementById('msg-erro').innerText = "Código inválido ou já utilizado!";
@@ -602,7 +534,7 @@
         async function validarSenhaAdmin() {
             const senha = document.getElementById('senha-admin').value;
             if (senha === "Marcelinho123.") {
-                await carregarBanco(); // Puxa tabela antes de mostrar
+                await carregarBanco(); 
                 mostrarTela('tela-admin');
                 carregarPainelAdmin();
                 carregarPainelCodigos();
@@ -615,11 +547,13 @@
             const tbody = document.getElementById('tabela-usuarios');
             tbody.innerHTML = "";
             const emails = Object.keys(bancoDados);
-
-            if (emails.length === 0) return tbody.innerHTML = "<tr><td colspan='3'>Nenhum usuário cadastrado.</td></tr>";
+            let contagemUsuarios = 0;
 
             emails.forEach(email => {
                 const dados = bancoDados[email];
+                if (dados.status === 'Voucher') return; // Pula os códigos, mostra só pessoas
+                contagemUsuarios++;
+
                 const agora = new Date().getTime();
                 let status = "Sem Acesso";
                 let corStatus = "var(--danger)";
@@ -644,22 +578,19 @@
                 `;
                 tbody.appendChild(tr);
             });
+
+            if (contagemUsuarios === 0) tbody.innerHTML = "<tr><td colspan='3'>Nenhum usuário cadastrado.</td></tr>";
         }
 
         async function adminExcluirUsuario(email) {
             if (confirm(`ATENÇÃO: Deseja excluir permanentemente a conta ${email} da nuvem?`)) {
                 await enviarParaNuvem({ acao: 'excluir', email: email });
-                
-                // Limpa o local de forma isolada
-                localStorage.removeItem(`finances_data_${email}`);
-                localStorage.removeItem(`finances_limits_${email}`);
-                
+                localStorage.removeItem(`finances_data_${email}`); localStorage.removeItem(`finances_limits_${email}`);
                 if (usuarioLogado === email) usuarioLogado = null; 
                 carregarPainelAdmin(); 
             }
         }
 
-        // Usado pelo botão do painel
         async function adminLiberarAcessoUI(email) {
             const dias = parseInt(document.getElementById(`dias-${email}`).value);
             if(dias > 0) {
@@ -669,50 +600,67 @@
             }
         }
 
-        // Usado internamente pelo Admin e pelo Voucher
         async function adminLiberarAcessoInterno(email, dias) {
             const diasEmMs = dias * 24 * 60 * 60 * 1000;
             const agora = new Date().getTime();
             let validadeAtual = bancoDados[email] ? parseInt(bancoDados[email].validade) : null;
             let novaValidade = (validadeAtual && validadeAtual > agora) ? (validadeAtual + diasEmMs) : (agora + diasEmMs);
             
-            await enviarParaNuvem({
-                acao: 'atualizar', email: email, validade: novaValidade, status: 'Ativo'
-            });
+            await enviarParaNuvem({ acao: 'atualizar', email: email, validade: novaValidade, status: 'Ativo' });
         }
 
         async function adminRemoverAcesso(email) {
-            await enviarParaNuvem({
-                acao: 'atualizar', email: email, validade: '', status: 'Inativo'
-            });
+            await enviarParaNuvem({ acao: 'atualizar', email: email, validade: '', status: 'Inativo' });
             carregarPainelAdmin();
         }
 
-        /* --- CÓDIGOS ADMIN (Mantidos locais para segurança do admin) --- */
+        // ==========================================
+        // CÓDIGO CORRIGIDO: GERADOR NA NUVEM
+        // ==========================================
         function carregarPainelCodigos() {
             const tbody = document.getElementById('tabela-codigos'); tbody.innerHTML = "";
-            const codigos = Object.keys(bancoCodigos);
-            if (codigos.length === 0) return tbody.innerHTML = "<tr><td colspan='3'>Nenhum código ativo.</td></tr>";
-            codigos.forEach(cod => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `<td style="font-weight: bold; color: var(--info);">${cod}</td><td>${bancoCodigos[cod]} dias</td><td><button class="btn-vermelho" style="padding: 5px 10px;" onclick="adminExcluirCodigo('${cod}')">Excluir</button></td>`;
-                tbody.appendChild(tr);
+            const chaves = Object.keys(bancoDados);
+            let contagemCodigos = 0;
+
+            chaves.forEach(chave => {
+                const dados = bancoDados[chave];
+                // Se for um "Voucher" salvo na nuvem, ele aparece aqui
+                if (dados.status === 'Voucher') {
+                    contagemCodigos++;
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td style="font-weight: bold; color: var(--info);">${chave}</td><td>${dados.validade} dias</td><td><button class="btn-vermelho" style="padding: 5px 10px;" onclick="adminExcluirCodigo('${chave}')">Excluir</button></td>`;
+                    tbody.appendChild(tr);
+                }
             });
+
+            if (contagemCodigos === 0) tbody.innerHTML = "<tr><td colspan='3'>Nenhum código ativo na nuvem.</td></tr>";
         }
 
-        function adminCriarCodigo() {
-            const novoCod = document.getElementById('novo-codigo').value.trim().toUpperCase(), dias = parseInt(document.getElementById('dias-codigo').value);
+        async function adminCriarCodigo() {
+            const novoCod = document.getElementById('novo-codigo').value.trim().toUpperCase();
+            const dias = parseInt(document.getElementById('dias-codigo').value);
             if (!novoCod || !dias) return alert("Preencha todos os campos.");
-            if (bancoCodigos[novoCod]) return alert("Esse código já existe!");
-            bancoCodigos[novoCod] = dias; localStorage.setItem('bancoCodigos', JSON.stringify(bancoCodigos));
-            document.getElementById('novo-codigo').value = ""; carregarPainelCodigos(); 
+            
+            await carregarBanco(); 
+            if (bancoDados[novoCod]) return alert("Esse código (ou e-mail) já existe no banco de dados!");
+
+            // Cadastra o código na nuvem como se fosse um usuário "Voucher"
+            await enviarParaNuvem({ acao: 'cadastrar', email: novoCod, senha: 'CODE', validade: dias, status: 'Voucher' });
+            
+            document.getElementById('novo-codigo').value = ""; 
+            carregarPainelCodigos(); 
         }
 
-        function adminExcluirCodigo(cod) { delete bancoCodigos[cod]; localStorage.setItem('bancoCodigos', JSON.stringify(bancoCodigos)); carregarPainelCodigos(); }
+        async function adminExcluirCodigo(cod) { 
+            if(confirm("Deseja deletar este código da nuvem?")) {
+                await enviarParaNuvem({ acao: 'excluir', email: cod });
+                carregarPainelCodigos(); 
+            }
+        }
 
 
         /* ==========================================================================
-           LÓGICA DO SISTEMA FINANCELY (DASHBOARD MANTIDO INTACTO)
+           LÓGICA DO SISTEMA FINANCELY (DASHBOARD)
            ========================================================================== */
         
         let transactions, categories, limits, notesList, creditCards, myChart;
@@ -725,176 +673,70 @@
             categories = JSON.parse(localStorage.getItem(`finances_categories_${usuarioLogado}`)) || ["Alimentação", "Transporte", "Lazer", "Saúde", "Contas Fixas", "Salário", "Outros"];
 
             if(localStorage.getItem('finances_dark') === 'true') {
-                document.body.classList.add('dark');
-                document.getElementById('darkModeIcon').className = 'fas fa-sun';
+                document.body.classList.add('dark'); document.getElementById('darkModeIcon').className = 'fas fa-sun';
             }
 
-            const now = new Date();
-            document.getElementById('monthFilter').value = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+            const now = new Date(); document.getElementById('monthFilter').value = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
             document.getElementById('expenseDate').value = now.toISOString().split('T')[0];
 
             loadCategories(); loadProfileData(); loadPaymentMethods(); renderNotes(); updateUI();
         }
 
-        // Executado ao carregar a página inicialmente
         window.onload = async () => {
             if (usuarioLogado) {
-                await carregarBanco(); // Atualiza dados antes de checar acesso
+                await carregarBanco(); 
                 verificarAcesso();
             } else {
                 mostrarTela('tela-login');
             }
         };
 
-        function saveData() {
-            localStorage.setItem(`finances_data_${usuarioLogado}`, JSON.stringify(transactions));
-            updateUI();
-            if(!document.getElementById('tabAnalise').classList.contains('hidden')) renderAnalysis();
-            if(!document.getElementById('tabCartoes').classList.contains('hidden')) renderCards();
-        }
-
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark');
-            const isDark = document.body.classList.contains('dark');
-            localStorage.setItem('finances_dark', isDark);
-            document.getElementById('darkModeIcon').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-            if(myChart) updateChart(getFilteredTransactions());
-        }
-
+        function saveData() { localStorage.setItem(`finances_data_${usuarioLogado}`, JSON.stringify(transactions)); updateUI(); if(!document.getElementById('tabAnalise').classList.contains('hidden')) renderAnalysis(); if(!document.getElementById('tabCartoes').classList.contains('hidden')) renderCards(); }
+        function toggleDarkMode() { document.body.classList.toggle('dark'); const isDark = document.body.classList.contains('dark'); localStorage.setItem('finances_dark', isDark); document.getElementById('darkModeIcon').className = isDark ? 'fas fa-sun' : 'fas fa-moon'; if(myChart) updateChart(getFilteredTransactions()); }
         function switchTab(tab) {
             ['tabInicio', 'tabAnalise', 'tabCartoes', 'tabMetas', 'tabPerfil', 'tabAnotacoes'].forEach(id => document.getElementById(id).classList.add('hidden'));
             ['btnTabInicio', 'btnTabAnalise', 'btnTabCartoes', 'btnTabMetas', 'btnTabPerfil', 'btnTabAnotacoes'].forEach(id => document.getElementById(id).classList.remove('active'));
             document.getElementById('mainToolbar').classList.add('hidden');
-
             const tabIds = { 'inicio':'tabInicio', 'analise':'tabAnalise', 'cartoes':'tabCartoes', 'metas':'tabMetas', 'perfil':'tabPerfil', 'anotacoes':'tabAnotacoes' };
             const btnIds = { 'inicio':'btnTabInicio', 'analise':'btnTabAnalise', 'cartoes':'btnTabCartoes', 'metas':'btnTabMetas', 'perfil':'btnTabPerfil', 'anotacoes':'btnTabAnotacoes' };
-            
-            document.getElementById(tabIds[tab]).classList.remove('hidden');
-            document.getElementById(btnIds[tab]).classList.add('active');
-
+            document.getElementById(tabIds[tab]).classList.remove('hidden'); document.getElementById(btnIds[tab]).classList.add('active');
             if(['inicio','analise','cartoes'].includes(tab)) document.getElementById('mainToolbar').classList.remove('hidden');
-            
-            if(tab === 'inicio') updateUI();
-            if(tab === 'analise') renderAnalysis();
-            if(tab === 'cartoes') renderCards();
-            if(tab === 'metas') renderMetas();
+            if(tab === 'inicio') updateUI(); if(tab === 'analise') renderAnalysis(); if(tab === 'cartoes') renderCards(); if(tab === 'metas') renderMetas();
         }
 
-        function toggleFormFields() {
-            const isExpense = document.getElementById('expenseType').value === 'expense';
-            document.getElementById('expensePriority').style.display = isExpense ? 'block' : 'none';
-            document.getElementById('paymentMethodContainer').style.display = isExpense ? 'block' : 'none';
-        }
-
+        function toggleFormFields() { const isExpense = document.getElementById('expenseType').value === 'expense'; document.getElementById('expensePriority').style.display = isExpense ? 'block' : 'none'; document.getElementById('paymentMethodContainer').style.display = isExpense ? 'block' : 'none'; }
         function saveTransaction() {
-            const editId = document.getElementById('editId').value, type = document.getElementById('expenseType').value;
-            const name = document.getElementById('expenseName').value, amount = parseFloat(document.getElementById('expenseAmount').value);
-            const date = document.getElementById('expenseDate').value, category = document.getElementById('expenseCategory').value;
-            const priority = type === 'expense' ? document.getElementById('expensePriority').value : 'N/A';
-            const paymentMethod = type === 'expense' ? document.getElementById('expensePaymentMethod').value : 'main';
-
+            const editId = document.getElementById('editId').value, type = document.getElementById('expenseType').value, name = document.getElementById('expenseName').value, amount = parseFloat(document.getElementById('expenseAmount').value), date = document.getElementById('expenseDate').value, category = document.getElementById('expenseCategory').value, priority = type === 'expense' ? document.getElementById('expensePriority').value : 'N/A', paymentMethod = type === 'expense' ? document.getElementById('expensePaymentMethod').value : 'main';
             if (!name || isNaN(amount) || amount <= 0 || !date) return alert("Dados inválidos. Verifique os campos.");
-
-            if (editId) {
-                const index = transactions.findIndex(t => t.id == editId);
-                if (index > -1) transactions[index] = { id: parseInt(editId), type, name, amount, date, category, priority, paymentMethod };
-                cancelEdit();
-            } else {
-                transactions.unshift({ id: Date.now(), type, name, amount, date, category, priority, paymentMethod });
-            }
-
+            if (editId) { const index = transactions.findIndex(t => t.id == editId); if (index > -1) transactions[index] = { id: parseInt(editId), type, name, amount, date, category, priority, paymentMethod }; cancelEdit(); } else { transactions.unshift({ id: Date.now(), type, name, amount, date, category, priority, paymentMethod }); }
             saveData(); document.getElementById('expenseName').value = ''; document.getElementById('expenseAmount').value = '';
         }
-
-        function editTransaction(id) {
-            const t = transactions.find(t => t.id === id); if(!t) return;
-            document.getElementById('editId').value = t.id; document.getElementById('expenseType').value = t.type || 'expense'; toggleFormFields();
-            document.getElementById('expenseName').value = t.name; document.getElementById('expenseAmount').value = t.amount;
-            let fDate = t.date; if(fDate.includes('/')) { const parts = fDate.split('/'); fDate = `${parts[2]}-${parts[1]}-${parts[0]}`; }
-            document.getElementById('expenseDate').value = fDate; document.getElementById('expenseCategory').value = t.category;
-            if(t.type !== 'income') { if(t.priority) document.getElementById('expensePriority').value = t.priority; if(t.paymentMethod) document.getElementById('expensePaymentMethod').value = t.paymentMethod; }
-            document.getElementById('formTitle').innerText = 'Editar Transação'; document.getElementById('btnSaveTransaction').innerText = 'Salvar Alterações';
-            document.getElementById('btnCancelEdit').classList.remove('hidden'); switchTab('inicio');
-        }
-
-        function cancelEdit() {
-            document.getElementById('editId').value = ''; document.getElementById('formTitle').innerText = 'Nova Transação';
-            document.getElementById('btnSaveTransaction').innerText = 'Adicionar Transação'; document.getElementById('btnCancelEdit').classList.add('hidden');
-            document.getElementById('expenseName').value = ''; document.getElementById('expenseAmount').value = '';
-        }
-
+        function editTransaction(id) { const t = transactions.find(t => t.id === id); if(!t) return; document.getElementById('editId').value = t.id; document.getElementById('expenseType').value = t.type || 'expense'; toggleFormFields(); document.getElementById('expenseName').value = t.name; document.getElementById('expenseAmount').value = t.amount; let fDate = t.date; if(fDate.includes('/')) { const parts = fDate.split('/'); fDate = `${parts[2]}-${parts[1]}-${parts[0]}`; } document.getElementById('expenseDate').value = fDate; document.getElementById('expenseCategory').value = t.category; if(t.type !== 'income') { if(t.priority) document.getElementById('expensePriority').value = t.priority; if(t.paymentMethod) document.getElementById('expensePaymentMethod').value = t.paymentMethod; } document.getElementById('formTitle').innerText = 'Editar Transação'; document.getElementById('btnSaveTransaction').innerText = 'Salvar Alterações'; document.getElementById('btnCancelEdit').classList.remove('hidden'); switchTab('inicio'); }
+        function cancelEdit() { document.getElementById('editId').value = ''; document.getElementById('formTitle').innerText = 'Nova Transação'; document.getElementById('btnSaveTransaction').innerText = 'Adicionar Transação'; document.getElementById('btnCancelEdit').classList.add('hidden'); document.getElementById('expenseName').value = ''; document.getElementById('expenseAmount').value = ''; }
         function deleteTransaction(id) { if(confirm("Excluir esta transação?")) { transactions = transactions.filter(t => t.id !== id); saveData(); } }
-
-        function exportData() {
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(transactions));
-            const dl = document.createElement('a'); dl.setAttribute("href", dataStr); dl.setAttribute("download", `financely_${usuarioLogado}.json`); dl.click();
-        }
-
-        function clearData() {
-            if(confirm("Isso apagará TODOS os seus dados financeiros locais. Tem certeza?")) {
-                localStorage.removeItem(`finances_data_${usuarioLogado}`); localStorage.removeItem(`finances_limits_${usuarioLogado}`);
-                localStorage.removeItem(`finances_notes_${usuarioLogado}`); localStorage.removeItem(`finances_cards_${usuarioLogado}`);
-                transactions = []; limits = {}; notesList = []; creditCards = []; updateUI(); renderNotes(); loadPaymentMethods();
-            }
-        }
-
-        function getFilteredTransactions() {
-            const filterMonth = document.getElementById('monthFilter').value; if(!filterMonth) return transactions;
-            return transactions.filter(t => { let tDate = t.date; if(tDate.includes('/')) { const parts = tDate.split('/'); tDate = `${parts[2]}-${parts[1]}-${parts[0]}`; } return tDate.startsWith(filterMonth); });
-        }
+        function exportData() { const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(transactions)); const dl = document.createElement('a'); dl.setAttribute("href", dataStr); dl.setAttribute("download", `financely_${usuarioLogado}.json`); dl.click(); }
+        function clearData() { if(confirm("Isso apagará TODOS os seus dados financeiros locais. Tem certeza?")) { localStorage.removeItem(`finances_data_${usuarioLogado}`); localStorage.removeItem(`finances_limits_${usuarioLogado}`); localStorage.removeItem(`finances_notes_${usuarioLogado}`); localStorage.removeItem(`finances_cards_${usuarioLogado}`); transactions = []; limits = {}; notesList = []; creditCards = []; updateUI(); renderNotes(); loadPaymentMethods(); } }
+        function getFilteredTransactions() { const filterMonth = document.getElementById('monthFilter').value; if(!filterMonth) return transactions; return transactions.filter(t => { let tDate = t.date; if(tDate.includes('/')) { const parts = tDate.split('/'); tDate = `${parts[2]}-${parts[1]}-${parts[0]}`; } return tDate.startsWith(filterMonth); }); }
 
         function updateUI() {
-            const filtered = getFilteredTransactions(), list = document.getElementById('expenseList'); list.innerHTML = '';
-            let totalIncome = 0, totalExpense = 0;
-
+            const filtered = getFilteredTransactions(), list = document.getElementById('expenseList'); list.innerHTML = ''; let totalIncome = 0, totalExpense = 0;
             filtered.forEach(t => {
-                const type = t.type || 'expense'; 
-                if(type === 'income') totalIncome += t.amount; if(type === 'expense') totalExpense += t.amount;
-
+                const type = t.type || 'expense'; if(type === 'income') totalIncome += t.amount; if(type === 'expense') totalExpense += t.amount;
                 let displayDate = t.date; if(t.date.includes('-')) { const [y, m, d] = t.date.split('-'); displayDate = `${d}/${m}/${y}`; }
-                let badgeHTML = '';
-                if(type === 'expense') {
-                    const prio = t.priority || 'Importante'; badgeHTML += `<span class="badge badge-${prio.toLowerCase().replace('é', 'e')}">${prio}</span>`;
-                    if(t.paymentMethod && t.paymentMethod !== 'main') {
-                        const cardFound = creditCards.find(c => c.id === t.paymentMethod);
-                        badgeHTML += `<span class="badge badge-card"><i class="fas fa-credit-card"></i> ${cardFound ? cardFound.name : 'Cartão'}</span>`;
-                    }
-                }
-
+                let badgeHTML = ''; if(type === 'expense') { const prio = t.priority || 'Importante'; badgeHTML += `<span class="badge badge-${prio.toLowerCase().replace('é', 'e')}">${prio}</span>`; if(t.paymentMethod && t.paymentMethod !== 'main') { const cardFound = creditCards.find(c => c.id === t.paymentMethod); badgeHTML += `<span class="badge badge-card"><i class="fas fa-credit-card"></i> ${cardFound ? cardFound.name : 'Cartão'}</span>`; } }
                 const li = document.createElement('li'); li.className = `type-${type}`;
-                li.innerHTML = `
-                    <div><strong>${t.name}</strong> ${badgeHTML}<br><small style="color:var(--text-muted)">${t.category} • ${displayDate}</small></div>
-                    <div style="display:flex; align-items:center; gap:10px">
-                        <span style="font-weight:700; color: var(--${type === 'income' ? 'success' : 'danger'})">${type === 'income' ? '+' : '-'} R$ ${t.amount.toFixed(2)}</span>
-                        <button class="action-btn edit-btn" onclick="editTransaction(${t.id})"><i class="fas fa-pen"></i></button>
-                        <button class="action-btn delete-btn" onclick="deleteTransaction(${t.id})"><i class="fas fa-trash-alt"></i></button>
-                    </div>`;
-                list.appendChild(li);
+                li.innerHTML = `<div><strong>${t.name}</strong> ${badgeHTML}<br><small style="color:var(--text-muted)">${t.category} • ${displayDate}</small></div><div style="display:flex; align-items:center; gap:10px"><span style="font-weight:700; color: var(--${type === 'income' ? 'success' : 'danger'})">${type === 'income' ? '+' : '-'} R$ ${t.amount.toFixed(2)}</span><button class="action-btn edit-btn" onclick="editTransaction(${t.id})"><i class="fas fa-pen"></i></button><button class="action-btn delete-btn" onclick="deleteTransaction(${t.id})"><i class="fas fa-trash-alt"></i></button></div>`; list.appendChild(li);
             });
-
-            const balance = totalIncome - totalExpense;
-            document.getElementById('totalIncome').innerText = `R$ ${totalIncome.toFixed(2)}`; document.getElementById('totalExpense').innerText = `R$ ${totalExpense.toFixed(2)}`;
-            document.getElementById('totalBalance').innerText = `R$ ${balance.toFixed(2)}`; document.getElementById('totalBalance').style.color = balance < 0 ? 'var(--danger)' : 'var(--primary)';
-            updateChart(filtered);
-            if(!document.getElementById('tabMetas').classList.contains('hidden')) renderMetas();
-            if(!document.getElementById('tabAnalise').classList.contains('hidden')) renderAnalysis();
-            if(!document.getElementById('tabCartoes').classList.contains('hidden')) renderCards();
+            const balance = totalIncome - totalExpense; document.getElementById('totalIncome').innerText = `R$ ${totalIncome.toFixed(2)}`; document.getElementById('totalExpense').innerText = `R$ ${totalExpense.toFixed(2)}`; document.getElementById('totalBalance').innerText = `R$ ${balance.toFixed(2)}`; document.getElementById('totalBalance').style.color = balance < 0 ? 'var(--danger)' : 'var(--primary)';
+            updateChart(filtered); if(!document.getElementById('tabMetas').classList.contains('hidden')) renderMetas(); if(!document.getElementById('tabAnalise').classList.contains('hidden')) renderAnalysis(); if(!document.getElementById('tabCartoes').classList.contains('hidden')) renderCards();
         }
 
         function updateChart(filteredData) {
-            const ctx = document.getElementById('expenseChart').getContext('2d'), isDark = document.body.classList.contains('dark');
-            Chart.defaults.color = isDark ? '#f8fafc' : '#64748b';
+            const ctx = document.getElementById('expenseChart').getContext('2d'), isDark = document.body.classList.contains('dark'); Chart.defaults.color = isDark ? '#f8fafc' : '#64748b';
             const categoryTotals = {}; filteredData.forEach(t => { if((t.type || 'expense') === 'expense') categoryTotals[t.category] = (categoryTotals[t.category] || 0) + t.amount; });
-
-            if (myChart) myChart.destroy();
-            myChart = new Chart(ctx, {
-                type: document.getElementById('chartType').value,
-                data: { labels: Object.keys(categoryTotals), datasets: [{ label: 'Despesas', data: Object.values(categoryTotals), backgroundColor: ['#f59e0b', '#10b981', '#ef4444', '#3b82f6', '#8b5cf6', '#06b6d4', '#ec4899'], borderWidth: 2, borderColor: isDark ? '#1e293b' : '#ffffff', borderRadius: 5 }] },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
-            });
+            if (myChart) myChart.destroy(); myChart = new Chart(ctx, { type: document.getElementById('chartType').value, data: { labels: Object.keys(categoryTotals), datasets: [{ label: 'Despesas', data: Object.values(categoryTotals), backgroundColor: ['#f59e0b', '#10b981', '#ef4444', '#3b82f6', '#8b5cf6', '#06b6d4', '#ec4899'], borderWidth: 2, borderColor: isDark ? '#1e293b' : '#ffffff', borderRadius: 5 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } } });
         }
 
-        // Funções de Cartões, Perfil, Categorias, Análise e Metas (compactadas visualmente, mantendo lógica)
         function addCard() { const name = document.getElementById('cardName').value, limit = parseFloat(document.getElementById('cardLimit').value); if (!name || isNaN(limit) || limit <= 0) return alert("Erro"); creditCards.push({ id: 'card_' + Date.now(), name: name, limit: limit }); localStorage.setItem(`finances_cards_${usuarioLogado}`, JSON.stringify(creditCards)); document.getElementById('cardName').value = ''; document.getElementById('cardLimit').value = ''; loadPaymentMethods(); renderCards(); }
         function deleteCard(id) { if(confirm("Deletar cartão?")) { creditCards = creditCards.filter(c => c.id !== id); localStorage.setItem(`finances_cards_${usuarioLogado}`, JSON.stringify(creditCards)); transactions.forEach(t => { if(t.paymentMethod === id) t.paymentMethod = 'main'; }); saveData(); loadPaymentMethods(); renderCards(); } }
         function renderCards() { const container = document.getElementById('cardsList'); container.innerHTML = ''; const filteredTrans = getFilteredTransactions(); if(creditCards.length === 0) return container.innerHTML = '<p style="color:var(--text-muted);">Nenhum cartão cadastrado.</p>'; creditCards.forEach(c => { let spentThisMonth = 0; filteredTrans.forEach(t => { if(t.paymentMethod === c.id && t.type === 'expense') spentThisMonth += t.amount; }); let available = c.limit - spentThisMonth; let percent = (spentThisMonth / c.limit) * 100; let barWidth = percent > 100 ? 100 : percent; let colorClass = percent >= 90 ? 'danger' : (percent >= 75 ? 'warning' : ''); container.innerHTML += `<div class="credit-card-box"><button onclick="deleteCard('${c.id}')" style="position:absolute; top:15px; right:15px; background:none; border:none; color:#f87171; cursor:pointer;"><i class="fas fa-trash"></i></button><div class="chip"></div><h4>Cartão ${c.name}</h4><div style="margin-top: 15px;"><div style="display:flex; justify-content:space-between; font-size: 0.85rem; margin-bottom: 5px; color:#e2e8f0;"><span>Fatura: <strong>R$ ${spentThisMonth.toFixed(2)}</strong></span><span>Livre: R$ ${available.toFixed(2)}</span></div><div class="progress-bar" style="background: rgba(255,255,255,0.2); border: none;"><div class="progress-fill ${colorClass}" style="width: ${barWidth}%; background-color: ${colorClass=='' ? '#10b981' : ''};"></div></div></div></div>`; }); }
