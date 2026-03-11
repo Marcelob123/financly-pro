@@ -72,6 +72,41 @@
         
         .admin-wrapper { max-width: 900px; margin: 2rem auto; }
 
+        /* =========================================================
+           NOVO: EFEITO VIDRO FOSCO (GLASSMORPHISM) + ANIMAÇÃO
+           ========================================================= */
+        .glass-badge {
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(45, 45, 45, 0.8)); /* Preto Translúcido */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 158, 11, 0.5); /* Borda Laranjada sutil */
+            padding: 12px 35px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.2);
+            animation: floatBadge 3s ease-in-out infinite;
+        }
+
+        .glass-badge h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #f59e0b; /* Alaranjado */
+            letter-spacing: -0.5px;
+        }
+
+        .glass-badge h1 span {
+            color: #ffffff; /* Letras brancas para destacar no fundo preto */
+            font-weight: 300;
+        }
+
+        @keyframes floatBadge {
+            0% { transform: translateY(0); box-shadow: 0 10px 25px rgba(245, 158, 11, 0.1); }
+            50% { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(245, 158, 11, 0.4); }
+            100% { transform: translateY(0); box-shadow: 0 10px 25px rgba(245, 158, 11, 0.1); }
+        }
+
         /* Forms e Inputs */
         h2, h3, h4 { margin-bottom: 1.5rem; font-weight: 700; }
         h4 { margin-bottom: 1rem; font-size: 1.1rem; }
@@ -230,6 +265,9 @@
 
         <section id="tela-cadastro" class="view-section auth-wrapper">
             <div class="auth-container">
+                <div class="glass-badge">
+                    <h1>Financely<span>.pro</span></h1>
+                </div>
                 <h2>Criar Conta</h2>
                 <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Cadastre-se para acessar a plataforma.</p>
                 <input type="email" id="cad-email" placeholder="Digite seu e-mail" required>
@@ -242,6 +280,9 @@
 
         <section id="tela-login" class="view-section active auth-wrapper">
             <div class="auth-container">
+                <div class="glass-badge">
+                    <h1>Financely<span>.pro</span></h1>
+                </div>
                 <h2>Fazer Login</h2>
                 <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Acesse seu painel financeiro.</p>
                 <input type="email" id="log-email" placeholder="Seu e-mail" required>
@@ -254,6 +295,9 @@
 
         <section id="tela-ativacao" class="view-section auth-wrapper">
             <div class="auth-container">
+                <div class="glass-badge">
+                    <h1>Financely<span>.pro</span></h1>
+                </div>
                 <h2>Ativação Necessária ⚠️</h2>
                 <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Sua conta está inativa ou o tempo expirou. Insira seu código de acesso VIP.</p>
                 <input type="text" id="input-codigo" placeholder="Digite o código (Ex: VIP30)" style="text-transform: uppercase; font-weight: bold; text-align: center;">
@@ -265,6 +309,9 @@
 
         <section id="tela-senha-admin" class="view-section auth-wrapper">
             <div class="auth-container">
+                <div class="glass-badge">
+                    <h1>Financely<span>.pro</span></h1>
+                </div>
                 <h2>Acesso Restrito 🔒</h2>
                 <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Área exclusiva para a administração do sistema.</p>
                 <input type="password" id="senha-admin" placeholder="Digite a senha do admin">
@@ -483,16 +530,15 @@
 
     <script>
         /* ==========================================================================
-           FUNÇÃO DE FORMATAÇÃO DE MOEDA BRASILEIRA (R$ 1.000,00)
+           FUNÇÃO DE FORMATAÇÃO DE MOEDA BRASILEIRA
            ========================================================================== */
         function formatCurrency(value) {
             return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
         }
 
         /* ==========================================================================
-           LÓGICA DE SEGURANÇA E ADMINISTRAÇÃO (CONECTADA AO GOOGLE SHEETS)
+           LÓGICA DE SEGURANÇA E ADMINISTRAÇÃO
            ========================================================================== */
-        
         const API_URL = "https://script.google.com/macros/s/AKfycbzRXtQ2X5Xb7TT6FIYk3tOZ6I-3MpqLZOTUiej2fCxupkZmy57Ze5LKy0vjm8dCbg0UEQ/exec";
         let bancoDados = {};
         let usuarioLogado = localStorage.getItem('usuarioLogadoAtual') || null;
@@ -733,7 +779,6 @@
                 }
             }); 
 
-            // Atualiza Resumo de Sobra
             let sobra = totalEntradas - totalDespesas;
             document.getElementById('analiseReceita').innerText = formatCurrency(totalEntradas);
             document.getElementById('analiseGasto').innerText = formatCurrency(totalDespesas);
