@@ -73,13 +73,13 @@
         .admin-wrapper { max-width: 900px; margin: 2rem auto; }
 
         /* =========================================================
-           NOVO: EFEITO VIDRO FOSCO (GLASSMORPHISM) + ANIMAÇÃO
+           EFEITO VIDRO FOSCO (GLASSMORPHISM) + ANIMAÇÃO
            ========================================================= */
         .glass-badge {
-            background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(45, 45, 45, 0.8)); /* Preto Translúcido */
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(45, 45, 45, 0.8)); 
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(245, 158, 11, 0.5); /* Borda Laranjada sutil */
+            border: 1px solid rgba(245, 158, 11, 0.5); 
             padding: 12px 35px;
             border-radius: 50px;
             display: inline-block;
@@ -89,17 +89,11 @@
         }
 
         .glass-badge h1 {
-            margin: 0;
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #f59e0b; /* Alaranjado */
-            letter-spacing: -0.5px;
+            margin: 0; font-size: 2.2rem; font-weight: 800;
+            color: #f59e0b; letter-spacing: -0.5px;
         }
 
-        .glass-badge h1 span {
-            color: #ffffff; /* Letras brancas para destacar no fundo preto */
-            font-weight: 300;
-        }
+        .glass-badge h1 span { color: #ffffff; font-weight: 300; }
 
         @keyframes floatBadge {
             0% { transform: translateY(0); box-shadow: 0 10px 25px rgba(245, 158, 11, 0.1); }
@@ -129,7 +123,6 @@
         .btn-secondary { background: var(--bg); color: var(--text-main); border: 1px solid var(--border); cursor: pointer; padding: 0.8rem; border-radius: 8px; font-weight: 600;}
         .btn-secondary:hover { opacity: 0.8; }
 
-        /* Botões do Painel Admin */
         .btn-verde { background-color: var(--success); color: white; border: none; padding: 0.8rem; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s;}
         .btn-verde:hover { opacity: 0.8; }
         .btn-vermelho { background-color: var(--danger); color: white; border: none; padding: 0.8rem; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s;}
@@ -141,10 +134,7 @@
 
         /* Dashboard e Cartões */
         .dashboard-wrapper { margin-top: 2rem; margin-bottom: 2rem; }
-        .summary-cards {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem; margin-bottom: 2rem;
-        }
+        .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
         .card { background: var(--card); padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); transition: background-color 0.3s; }
         .card h3 { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin: 0; }
         .card p { font-size: 2rem; font-weight: 800; margin-top: 0.5rem; }
@@ -155,7 +145,6 @@
         .main-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; }
         @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
 
-        /* Lista de Itens Financeiros */
         ul.fin-list { list-style: none; margin-top: 1rem; max-height: 400px; overflow-y: auto; }
         ul.fin-list li {
             background: var(--card); padding: 1rem; margin-bottom: 0.8rem;
@@ -181,11 +170,10 @@
         .tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; overflow-x: auto;}
         .tab-btn { background: none; border: none; font-size: 1.1rem; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 0.5rem 1rem; border-radius: 8px; transition: 0.2s; white-space: nowrap;}
         .tab-btn.active { background: var(--primary); color: var(--primary-text); }
-
         .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem; }
         .toolbar-actions { display: flex; gap: 0.5rem; }
 
-        /* Barras de Progresso e Tags */
+        /* Barras de Progresso */
         .progress-wrapper { margin-bottom: 1.5rem; }
         .progress-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600; }
         .progress-bar { width: 100%; height: 10px; background: var(--bg); border-radius: 5px; overflow: hidden; position: relative; border: 1px solid var(--border);}
@@ -199,23 +187,16 @@
         .badge-superfluo { background: var(--danger); color: white; }
         .badge-card { background: var(--text-muted); color: white; }
         
-        /* Botão Nav */
         .nav-btn { background:none; border:none; cursor:pointer; color:var(--text-muted); font-weight:600; margin-left: 15px; font-size: 1rem;}
         .nav-btn:hover { color: var(--primary); }
 
-        /* Box de Insights */
         .insight-box { background: var(--bg); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--primary); margin-bottom: 1rem; }
         .insight-box h4 { margin: 0 0 0.5rem 0; font-size: 1rem; color: var(--primary); }
 
-        /* Visual Cartão de Crédito */
-        .credit-card-box {
-            background: linear-gradient(135deg, var(--text-main), #475569); color: #ffffff;
-            padding: 1.5rem; border-radius: 12px; position: relative; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2); margin-bottom: 1rem;
-        }
+        .credit-card-box { background: linear-gradient(135deg, var(--text-main), #475569); color: #ffffff; padding: 1.5rem; border-radius: 12px; position: relative; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2); margin-bottom: 1rem; }
         .credit-card-box h4 { color: #ffffff; margin-bottom: 0.2rem; }
         .credit-card-box .chip { width: 40px; height: 25px; background: #fbbf24; border-radius: 4px; margin-bottom: 10px; opacity: 0.8; }
 
-        /* Estilos do Painel Admin */
         table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 20px;}
         th, td { padding: 10px; border: 1px solid var(--border); text-align: left; vertical-align: middle; color: var(--text-main); }
         th { background-color: var(--bg); font-weight: 700;}
@@ -223,18 +204,9 @@
         .admin-controls input { width: 80px; margin: 0; padding: 5px;}
         .admin-section { text-align: left; margin-top: 20px; padding-top: 20px; border-top: 2px solid var(--border); }
         
-        /* Loading Overlay */
-        #loadingOverlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7);
-            color: white; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 9999; display: none;
-        }
+        #loadingOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; display: none; }
 
-        /* Resumo de Sobra (Análise) */
-        .analysis-summary {
-            display: flex; flex-wrap: wrap; justify-content: space-around; gap: 15px; text-align: center;
-            background: var(--card); padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 2rem;
-        }
+        .analysis-summary { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 15px; text-align: center; background: var(--card); padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 2rem; }
         .analysis-summary > div { flex: 1; min-width: 150px; }
         .analysis-summary h4 { color:var(--text-muted); font-size:0.8rem; text-transform:uppercase; margin-bottom:0.5rem; }
         .analysis-summary p { font-size: 1.8rem; font-weight: 800; margin: 0; }
@@ -253,9 +225,7 @@
             <div class="logo">Financely<span>.pro</span></div>
             <div id="userNav" class="hidden" style="display: flex; align-items: center;">
                 <span id="navUserEmail" style="margin-right: 15px; font-size: 0.9rem; font-weight: 600; color: var(--primary);"></span>
-                <button class="nav-btn" onclick="toggleDarkMode()" title="Modo Escuro/Claro">
-                    <i id="darkModeIcon" class="fas fa-moon"></i>
-                </button>
+                <button class="nav-btn" onclick="toggleDarkMode()" title="Modo Escuro/Claro"><i id="darkModeIcon" class="fas fa-moon"></i></button>
                 <button class="nav-btn" onclick="sair()" title="Sair">Sair <i class="fas fa-sign-out-alt"></i></button>
             </div>
         </nav>
@@ -265,9 +235,7 @@
 
         <section id="tela-cadastro" class="view-section auth-wrapper">
             <div class="auth-container">
-                <div class="glass-badge">
-                    <h1>Financely<span>.pro</span></h1>
-                </div>
+                <div class="glass-badge"><h1>Financely<span>.pro</span></h1></div>
                 <h2>Criar Conta</h2>
                 <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Cadastre-se para acessar a plataforma.</p>
                 <input type="email" id="cad-email" placeholder="Digite seu e-mail" required>
@@ -280,9 +248,7 @@
 
         <section id="tela-login" class="view-section active auth-wrapper">
             <div class="auth-container">
-                <div class="glass-badge">
-                    <h1>Financely<span>.pro</span></h1>
-                </div>
+                <div class="glass-badge"><h1>Financely<span>.pro</span></h1></div>
                 <h2>Fazer Login</h2>
                 <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Acesse seu painel financeiro.</p>
                 <input type="email" id="log-email" placeholder="Seu e-mail" required>
@@ -295,9 +261,7 @@
 
         <section id="tela-ativacao" class="view-section auth-wrapper">
             <div class="auth-container">
-                <div class="glass-badge">
-                    <h1>Financely<span>.pro</span></h1>
-                </div>
+                <div class="glass-badge"><h1>Financely<span>.pro</span></h1></div>
                 <h2>Ativação Necessária ⚠️</h2>
                 <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Sua conta está inativa ou o tempo expirou. Insira seu código de acesso VIP.</p>
                 <input type="text" id="input-codigo" placeholder="Digite o código (Ex: VIP30)" style="text-transform: uppercase; font-weight: bold; text-align: center;">
@@ -309,9 +273,7 @@
 
         <section id="tela-senha-admin" class="view-section auth-wrapper">
             <div class="auth-container">
-                <div class="glass-badge">
-                    <h1>Financely<span>.pro</span></h1>
-                </div>
+                <div class="glass-badge"><h1>Financely<span>.pro</span></h1></div>
                 <h2>Acesso Restrito 🔒</h2>
                 <p style="color:var(--text-muted); margin-bottom: 1.5rem;">Área exclusiva para a administração do sistema.</p>
                 <input type="password" id="senha-admin" placeholder="Digite a senha do admin">
@@ -331,13 +293,7 @@
                     <h3>👥 Usuários na Planilha (Nuvem)</h3>
                     <div style="overflow-x: auto;">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>E-mail</th>
-                                    <th>Status / Vencimento</th>
-                                    <th>Ações Disponíveis</th>
-                                </tr>
-                            </thead>
+                            <thead><tr><th>E-mail</th><th>Status / Vencimento</th><th>Ações Disponíveis</th></tr></thead>
                             <tbody id="tabela-usuarios"></tbody>
                         </table>
                     </div>
@@ -345,7 +301,7 @@
 
                 <div class="admin-section">
                     <h3>🔑 Gerador de Códigos de Acesso</h3>
-                    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 1rem;">Os códigos gerados aqui são salvos diretamente na planilha e podem ser usados por qualquer usuário.</p>
+                    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 1rem;">Os códigos gerados aqui são salvos diretamente na planilha.</p>
                     <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1rem;">
                         <input type="text" id="novo-codigo" placeholder="Ex: PROMOCAO30" style="text-transform: uppercase; flex: 1; min-width: 200px;">
                         <input type="number" id="dias-codigo" placeholder="Qtd Dias" value="30" style="width: 120px;">
@@ -354,18 +310,11 @@
 
                     <div style="overflow-x: auto;">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>Código Ativo</th>
-                                    <th>Dias Concedidos</th>
-                                    <th>Ação</th>
-                                </tr>
-                            </thead>
+                            <thead><tr><th>Código Ativo</th><th>Dias Concedidos</th><th>Ação</th></tr></thead>
                             <tbody id="tabela-codigos"></tbody>
                         </table>
                     </div>
                 </div>
-
                 <button class="btn-secondary" onclick="sair()" style="margin-top: 20px; width: 100%;"><i class="fas fa-arrow-left"></i> Sair do Painel Admin</button>
             </div>
         </section>
@@ -397,18 +346,9 @@
 
             <div id="tabInicio">
                 <div class="summary-cards">
-                    <div class="card balance">
-                        <h3>Saldo Disponível (Contas)</h3>
-                        <p id="totalBalance">R$ 0,00</p>
-                    </div>
-                    <div class="card income">
-                        <h3>Total Entradas</h3>
-                        <p id="totalIncome">R$ 0,00</p>
-                    </div>
-                    <div class="card expense">
-                        <h3>Total Saídas (Geral)</h3>
-                        <p id="totalExpense">R$ 0,00</p>
-                    </div>
+                    <div class="card balance"><h3>Saldo Disponível (Contas)</h3><p id="totalBalance">R$ 0,00</p></div>
+                    <div class="card income"><h3>Total Entradas</h3><p id="totalIncome">R$ 0,00</p></div>
+                    <div class="card expense"><h3>Total Saídas (Geral)</h3><p id="totalExpense">R$ 0,00</p></div>
                 </div>
 
                 <div class="main-grid">
@@ -421,7 +361,7 @@
                         <input type="date" id="expenseDate">
                         <div style="display:flex; gap:10px;"><select id="expenseCategory"></select><button class="btn-secondary" style="width:auto; padding:0 15px;" onclick="manageCategories()" title="Editar Categorias"><i class="fas fa-cog"></i></button></div>
                         <div id="paymentMethodContainer"><select id="expensePaymentMethod"><option value="main">Conta Principal / Dinheiro</option></select></div>
-                        <select id="expensePriority"><option value="Essencial">Prioridade: Essencial (Sobrevivência)</option><option value="Importante">Prioridade: Importante (Conforto)</option><option value="Superfluo">Prioridade: Supérfluo (Desejos)</option></select>
+                        <select id="expensePriority"><option value="Essencial">Prioridade: Essencial</option><option value="Importante">Prioridade: Importante</option><option value="Superfluo">Prioridade: Supérfluo</option></select>
                         <button class="btn-primary" id="btnSaveTransaction" onclick="saveTransaction()">Adicionar Transação</button>
                         <button class="btn-secondary hidden" id="btnCancelEdit" onclick="cancelEdit()" style="margin-top:10px; width:100%;">Cancelar Edição</button>
                     </div>
@@ -437,94 +377,11 @@
                 </div>
             </div>
 
-            <div id="tabCartoes" class="hidden">
-                <div class="main-grid">
-                    <div class="card">
-                        <h3>Adicionar Cartão de Crédito</h3>
-                        <input type="text" id="cardName" placeholder="Ex: Nubank, Itaú...">
-                        <input type="number" id="cardLimit" placeholder="0.00" step="0.01">
-                        <button class="btn-primary" onclick="addCard()">Salvar Cartão</button>
-                    </div>
-                    <div class="card">
-                        <h3>Meus Cartões</h3>
-                        <div id="cardsList" style="margin-top: 1rem;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="tabAnalise" class="hidden">
-                
-                <div class="analysis-summary">
-                    <div>
-                        <h4>Total Entradas (Salário)</h4>
-                        <p id="analiseReceita" style="color: var(--success);">R$ 0,00</p>
-                    </div>
-                    <div>
-                        <h4>Total Gastos</h4>
-                        <p id="analiseGasto" style="color: var(--danger);">R$ 0,00</p>
-                    </div>
-                    <div class="sobra-box">
-                        <h4>O que Sobra</h4>
-                        <p id="analiseSobra">R$ 0,00</p>
-                    </div>
-                </div>
-
-                <div class="main-grid">
-                    <div class="card">
-                        <h3>Detalhes por Categoria</h3>
-                        <ul id="analysisCategoryList" style="max-height: none; overflow: visible; padding-left:0; list-style:none;"></ul>
-                    </div>
-                    <div class="card">
-                        <h3>Diagnóstico de Prioridades</h3>
-                        <div id="analysisInsights"></div>
-                        <div style="margin-top: 2rem;">
-                            <h4>Gasto por Nível de Prioridade</h4>
-                            <div id="priorityBars"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="tabMetas" class="hidden">
-                <div class="main-grid">
-                    <div class="card">
-                        <h3>Definir Limite Mensal</h3>
-                        <select id="limitCategory"></select>
-                        <input type="number" id="limitAmount" placeholder="Valor Limite R$" step="0.01">
-                        <button class="btn-primary" onclick="addLimit()">Salvar Limite</button>
-                    </div>
-                    <div class="card">
-                        <h3>Progresso do Mês Atual</h3>
-                        <div id="limitsList" style="margin-top: 1.5rem;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="tabPerfil" class="hidden">
-                <div class="card" style="max-width: 600px; margin: 0 auto;">
-                    <h3>Informações do Perfil</h3>
-                    <input type="text" id="profileName" placeholder="Seu Nome">
-                    <input type="text" id="profileJob" placeholder="Ex: Desenvolvedor...">
-                    <button class="btn-primary" onclick="saveProfile()">Salvar Dados</button>
-                    <p id="profileFeedback" style="color: var(--success); font-weight: 600; margin-top: 10px; display: none;">Salvo com sucesso!</p>
-                </div>
-            </div>
-
-            <div id="tabAnotacoes" class="hidden">
-                <div class="main-grid">
-                    <div class="card">
-                        <h3>Nova Anotação</h3>
-                        <input type="text" id="noteTitle" placeholder="Título da anotação...">
-                        <textarea id="noteText" rows="5" placeholder="Escreva os detalhes aqui..."></textarea>
-                        <button class="btn-primary" onclick="addNote()">Salvar Anotação</button>
-                    </div>
-                    <div class="card">
-                        <h3>Suas Anotações</h3>
-                        <div id="notesContainer" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem;"></div>
-                    </div>
-                </div>
-            </div>
-
+            <div id="tabCartoes" class="hidden"><div class="main-grid"><div class="card"><h3>Adicionar Cartão de Crédito</h3><input type="text" id="cardName" placeholder="Ex: Nubank, Itaú..."><input type="number" id="cardLimit" placeholder="0.00" step="0.01"><button class="btn-primary" onclick="addCard()">Salvar Cartão</button></div><div class="card"><h3>Meus Cartões</h3><div id="cardsList" style="margin-top: 1rem;"></div></div></div></div>
+            <div id="tabAnalise" class="hidden"><div class="analysis-summary"><div><h4>Total Entradas (Salário)</h4><p id="analiseReceita" style="color: var(--success);">R$ 0,00</p></div><div><h4>Total Gastos</h4><p id="analiseGasto" style="color: var(--danger);">R$ 0,00</p></div><div class="sobra-box"><h4>O que Sobra</h4><p id="analiseSobra">R$ 0,00</p></div></div><div class="main-grid"><div class="card"><h3>Detalhes por Categoria</h3><ul id="analysisCategoryList" style="max-height: none; overflow: visible; padding-left:0; list-style:none;"></ul></div><div class="card"><h3>Diagnóstico de Prioridades</h3><div id="analysisInsights"></div><div style="margin-top: 2rem;"><h4>Gasto por Nível de Prioridade</h4><div id="priorityBars"></div></div></div></div></div>
+            <div id="tabMetas" class="hidden"><div class="main-grid"><div class="card"><h3>Definir Limite Mensal</h3><select id="limitCategory"></select><input type="number" id="limitAmount" placeholder="Valor Limite R$" step="0.01"><button class="btn-primary" onclick="addLimit()">Salvar Limite</button></div><div class="card"><h3>Progresso do Mês Atual</h3><div id="limitsList" style="margin-top: 1.5rem;"></div></div></div></div>
+            <div id="tabPerfil" class="hidden"><div class="card" style="max-width: 600px; margin: 0 auto;"><h3>Informações do Perfil</h3><input type="text" id="profileName" placeholder="Seu Nome"><input type="text" id="profileJob" placeholder="Ex: Desenvolvedor..."><button class="btn-primary" onclick="saveProfile()">Salvar Dados</button><p id="profileFeedback" style="color: var(--success); font-weight: 600; margin-top: 10px; display: none;">Salvo com sucesso!</p></div></div>
+            <div id="tabAnotacoes" class="hidden"><div class="main-grid"><div class="card"><h3>Nova Anotação</h3><input type="text" id="noteTitle" placeholder="Título da anotação..."><textarea id="noteText" rows="5" placeholder="Escreva os detalhes aqui..."></textarea><button class="btn-primary" onclick="addNote()">Salvar Anotação</button></div><div class="card"><h3>Suas Anotações</h3><div id="notesContainer" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem;"></div></div></div></div>
         </section>
     </main>
 
@@ -532,26 +389,23 @@
         /* ==========================================================================
            FUNÇÃO DE FORMATAÇÃO DE MOEDA BRASILEIRA
            ========================================================================== */
-        function formatCurrency(value) {
-            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
-        }
+        function formatCurrency(value) { return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value); }
 
         /* ==========================================================================
-           LÓGICA DE SEGURANÇA E ADMINISTRAÇÃO
+           LÓGICA DE SEGURANÇA E ADMINISTRAÇÃO (CONECTADA AO GOOGLE SHEETS)
            ========================================================================== */
         const API_URL = "https://script.google.com/macros/s/AKfycbzRXtQ2X5Xb7TT6FIYk3tOZ6I-3MpqLZOTUiej2fCxupkZmy57Ze5LKy0vjm8dCbg0UEQ/exec";
         let bancoDados = {};
-        let usuarioLogado = localStorage.getItem('usuarioLogadoAtual') || null;
+        let usuarioLogado = localStorage.getItem('usuario_financely') || null;
 
         function mostrarLoading(mostrar) { document.getElementById('loadingOverlay').style.display = mostrar ? 'flex' : 'none'; }
 
         async function carregarBanco(forcarAtualizacao = false) {
             mostrarLoading(true);
             try {
-                const resposta = await fetch(API_URL);
-                bancoDados = await resposta.json();
+                const resposta = await fetch(API_URL); bancoDados = await resposta.json();
                 if(forcarAtualizacao) { carregarPainelAdmin(); carregarPainelCodigos(); alert("Dados atualizados com a nuvem!"); }
-            } catch (error) { console.error("Erro ao conectar com a planilha:", error); alert("Erro ao conectar ao servidor."); }
+            } catch (error) { alert("Erro ao conectar ao servidor."); }
             mostrarLoading(false);
         }
 
@@ -560,8 +414,32 @@
             try {
                 await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(dadosPost) });
                 await carregarBanco(); 
-            } catch (error) { console.error("Erro de comunicação:", error); alert("Erro na comunicação com o banco."); }
+            } catch (error) { alert("Erro na comunicação com o banco."); }
             mostrarLoading(false);
+        }
+
+        // ==========================================================================
+        // NOVA FUNÇÃO DE SINCRONIZAÇÃO EM SEGUNDO PLANO
+        // ==========================================================================
+        function sincronizarComNuvem() {
+            if (!usuarioLogado) return;
+            const dadosParaEnviar = {
+                email: usuarioLogado,
+                transacoes: localStorage.getItem(`finances_data_${usuarioLogado}`) || "[]",
+                cartoes:     localStorage.getItem(`finances_cards_${usuarioLogado}`) || "[]",
+                limites:     localStorage.getItem(`finances_limits_${usuarioLogado}`) || "{}",
+                perfil:      localStorage.getItem(`finances_profile_${usuarioLogado}`) || "{}",
+                notas:       localStorage.getItem(`finances_notes_${usuarioLogado}`) || ""
+            };
+            const urlScript = "https://script.google.com/macros/s/AKfycbxcKKUJrdFCOrEGSZ4NlIjyBzbXSJ1zX48-h13guupnPJZLHEnWWclyuEFwevjih5bCMQ/exec"; 
+            
+            fetch(urlScript, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify(dadosParaEnviar)
+            }).then(() => {
+                console.log("Backup enviado silenciosamente para a nuvem!");
+            }).catch(err => console.log("Erro no backup:", err));
         }
 
         function validarEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
@@ -586,25 +464,54 @@
         async function fazerLogin() {
             const email = document.getElementById('log-email').value.trim(), senha = document.getElementById('log-senha').value;
             if (!email || !senha) return alert("Preencha todos os campos!");
-            if (!validarEmail(email)) return alert("E-mail inválido.");
             await carregarBanco(); 
-            const usuario = bancoDados[email];
-            if (usuario && usuario.senha == senha) { 
-                usuarioLogado = email; localStorage.setItem('usuarioLogadoAtual', email); verificarAcesso();
+            const dadosServidor = bancoDados[email];
+            if (dadosServidor && dadosServidor.senha == senha) { 
+                usuarioLogado = email; verificarAcesso();
             } else { alert("E-mail ou senha incorretos!"); }
         }
 
         function verificarAcesso() {
-            const dados = bancoDados[usuarioLogado];
-            if(!dados) return sair(); 
+            const dadosServidor = bancoDados[usuarioLogado];
+            if (!dadosServidor) return sair(); 
+
             const agora = new Date().getTime();
-            if (dados.validade && parseInt(dados.validade) > agora) {
+            let validadeOk = false;
+            
+            if (dadosServidor.status === "Voucher") {
+                validadeOk = true; 
+            } else {
+                validadeOk = dadosServidor.validade && parseInt(dadosServidor.validade) > agora;
+            }
+
+            if (validadeOk) {
+                localStorage.setItem('usuario_financely', usuarioLogado);
+
+                // Baixa dados da Nuvem
+                if (dadosServidor.financas) {
+                    const f = dadosServidor.financas;
+                    if (f.transacoes) localStorage.setItem(`finances_data_${usuarioLogado}`, f.transacoes);
+                    if (f.cartoes)     localStorage.setItem(`finances_cards_${usuarioLogado}`, f.cartoes);
+                    if (f.limites)     localStorage.setItem(`finances_limits_${usuarioLogado}`, f.limites);
+                    if (f.perfil)      localStorage.setItem(`finances_profile_${usuarioLogado}`, f.perfil);
+                    if (f.notas)       localStorage.setItem(`finances_notes_${usuarioLogado}`, f.notas);
+                }
+
                 document.getElementById('navUserEmail').innerText = usuarioLogado;
                 mostrarTela('dashboard');
-                const dataFormatada = new Date(parseInt(dados.validade)).toLocaleDateString('pt-BR') + ' às ' + new Date(parseInt(dados.validade)).toLocaleTimeString('pt-BR');
-                document.getElementById('data-expiracao').innerText = "Válido até: " + dataFormatada;
-                initApp(); 
-            } else { mostrarTela('tela-ativacao'); }
+                
+                if(dadosServidor.status !== "Voucher") {
+                    const dataExp = new Date(parseInt(dadosServidor.validade));
+                    document.getElementById('data-expiracao').innerText = "Válido até: " + dataExp.toLocaleDateString('pt-BR');
+                } else {
+                    document.getElementById('data-expiracao').innerText = "Acesso VIP Vitalício";
+                }
+                
+                if (typeof initApp === "function") initApp(); 
+                
+            } else {
+                mostrarTela('tela-ativacao');
+            }
         }
 
         async function ativarCodigo() {
@@ -621,7 +528,7 @@
         }
 
         function sair() {
-            usuarioLogado = null; localStorage.removeItem('usuarioLogadoAtual');
+            usuarioLogado = null; localStorage.removeItem('usuario_financely');
             document.getElementById('cad-email').value = ""; document.getElementById('cad-senha').value = "";
             document.getElementById('log-email').value = ""; document.getElementById('log-senha').value = "";
             mostrarTela('tela-login');
@@ -677,7 +584,6 @@
         }
         async function adminExcluirCodigo(cod) { if(confirm("Deletar código?")) { await enviarParaNuvem({ acao: 'excluir', email: cod }); carregarPainelCodigos(); } }
 
-
         /* ==========================================================================
            LÓGICA DO SISTEMA FINANCELY (DASHBOARD)
            ========================================================================== */
@@ -700,7 +606,14 @@
 
         window.onload = async () => { if (usuarioLogado) { await carregarBanco(); verificarAcesso(); } else { mostrarTela('tela-login'); } };
 
-        function saveData() { localStorage.setItem(`finances_data_${usuarioLogado}`, JSON.stringify(transactions)); updateUI(); if(!document.getElementById('tabAnalise').classList.contains('hidden')) renderAnalysis(); if(!document.getElementById('tabCartoes').classList.contains('hidden')) renderCards(); }
+        function saveData() { 
+            localStorage.setItem(`finances_data_${usuarioLogado}`, JSON.stringify(transactions)); 
+            updateUI(); 
+            if(!document.getElementById('tabAnalise').classList.contains('hidden')) renderAnalysis(); 
+            if(!document.getElementById('tabCartoes').classList.contains('hidden')) renderCards(); 
+            sincronizarComNuvem(); // Sincroniza sempre que alterar transações
+        }
+        
         function toggleDarkMode() { document.body.classList.toggle('dark'); const isDark = document.body.classList.contains('dark'); localStorage.setItem('finances_dark', isDark); document.getElementById('darkModeIcon').className = isDark ? 'fas fa-sun' : 'fas fa-moon'; if(myChart) updateChart(getFilteredTransactions()); }
         function switchTab(tab) {
             ['tabInicio', 'tabAnalise', 'tabCartoes', 'tabMetas', 'tabPerfil', 'tabAnotacoes'].forEach(id => document.getElementById(id).classList.add('hidden'));
@@ -724,7 +637,17 @@
         function cancelEdit() { document.getElementById('editId').value = ''; document.getElementById('formTitle').innerText = 'Nova Transação'; document.getElementById('btnSaveTransaction').innerText = 'Adicionar Transação'; document.getElementById('btnCancelEdit').classList.add('hidden'); document.getElementById('expenseName').value = ''; document.getElementById('expenseAmount').value = ''; }
         function deleteTransaction(id) { if(confirm("Excluir?")) { transactions = transactions.filter(t => t.id !== id); saveData(); } }
         function exportData() { const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(transactions)); const dl = document.createElement('a'); dl.setAttribute("href", dataStr); dl.setAttribute("download", `financely_${usuarioLogado}.json`); dl.click(); }
-        function clearData() { if(confirm("Apagar todos os dados locais?")) { localStorage.removeItem(`finances_data_${usuarioLogado}`); localStorage.removeItem(`finances_limits_${usuarioLogado}`); localStorage.removeItem(`finances_notes_${usuarioLogado}`); localStorage.removeItem(`finances_cards_${usuarioLogado}`); transactions = []; limits = {}; notesList = []; creditCards = []; updateUI(); renderNotes(); loadPaymentMethods(); } }
+        
+        function clearData() { 
+            if(confirm("Apagar todos os dados locais?")) { 
+                localStorage.removeItem(`finances_data_${usuarioLogado}`); localStorage.removeItem(`finances_limits_${usuarioLogado}`); 
+                localStorage.removeItem(`finances_notes_${usuarioLogado}`); localStorage.removeItem(`finances_cards_${usuarioLogado}`); 
+                transactions = []; limits = {}; notesList = []; creditCards = []; 
+                updateUI(); renderNotes(); loadPaymentMethods(); 
+                sincronizarComNuvem(); // Sincroniza a limpeza
+            } 
+        }
+        
         function getFilteredTransactions() { const filterMonth = document.getElementById('monthFilter').value; if(!filterMonth) return transactions; return transactions.filter(t => { let tDate = t.date; if(tDate.includes('/')) { const parts = tDate.split('/'); tDate = `${parts[2]}-${parts[1]}-${parts[0]}`; } return tDate.startsWith(filterMonth); }); }
 
         function updateUI() {
@@ -736,11 +659,7 @@
                 const li = document.createElement('li'); li.className = `type-${type}`;
                 li.innerHTML = `<div><strong>${t.name}</strong> ${badgeHTML}<br><small style="color:var(--text-muted)">${t.category} • ${displayDate}</small></div><div style="display:flex; align-items:center; gap:10px"><span style="font-weight:700; color: var(--${type === 'income' ? 'success' : 'danger'})">${type === 'income' ? '+' : '-'} ${formatCurrency(t.amount)}</span><button class="action-btn edit-btn" onclick="editTransaction(${t.id})"><i class="fas fa-pen"></i></button><button class="action-btn delete-btn" onclick="deleteTransaction(${t.id})"><i class="fas fa-trash-alt"></i></button></div>`; list.appendChild(li);
             });
-            const balance = totalIncome - totalExpense; 
-            document.getElementById('totalIncome').innerText = formatCurrency(totalIncome); 
-            document.getElementById('totalExpense').innerText = formatCurrency(totalExpense); 
-            document.getElementById('totalBalance').innerText = formatCurrency(balance); 
-            document.getElementById('totalBalance').style.color = balance < 0 ? 'var(--danger)' : 'var(--primary)';
+            const balance = totalIncome - totalExpense; document.getElementById('totalIncome').innerText = formatCurrency(totalIncome); document.getElementById('totalExpense').innerText = formatCurrency(totalExpense); document.getElementById('totalBalance').innerText = formatCurrency(balance); document.getElementById('totalBalance').style.color = balance < 0 ? 'var(--danger)' : 'var(--primary)';
             updateChart(filtered); if(!document.getElementById('tabMetas').classList.contains('hidden')) renderMetas(); if(!document.getElementById('tabAnalise').classList.contains('hidden')) renderAnalysis(); if(!document.getElementById('tabCartoes').classList.contains('hidden')) renderCards();
         }
 
@@ -750,17 +669,20 @@
             if (myChart) myChart.destroy(); myChart = new Chart(ctx, { type: document.getElementById('chartType').value, data: { labels: Object.keys(categoryTotals), datasets: [{ label: 'Despesas', data: Object.values(categoryTotals), backgroundColor: ['#f59e0b', '#10b981', '#ef4444', '#3b82f6', '#8b5cf6', '#06b6d4', '#ec4899'], borderWidth: 2, borderColor: isDark ? '#1e293b' : '#ffffff', borderRadius: 5 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } } });
         }
 
-        function addCard() { const name = document.getElementById('cardName').value, limit = parseFloat(document.getElementById('cardLimit').value); if (!name || isNaN(limit) || limit <= 0) return alert("Erro"); creditCards.push({ id: 'card_' + Date.now(), name: name, limit: limit }); localStorage.setItem(`finances_cards_${usuarioLogado}`, JSON.stringify(creditCards)); document.getElementById('cardName').value = ''; document.getElementById('cardLimit').value = ''; loadPaymentMethods(); renderCards(); }
-        function deleteCard(id) { if(confirm("Deletar cartão?")) { creditCards = creditCards.filter(c => c.id !== id); localStorage.setItem(`finances_cards_${usuarioLogado}`, JSON.stringify(creditCards)); transactions.forEach(t => { if(t.paymentMethod === id) t.paymentMethod = 'main'; }); saveData(); loadPaymentMethods(); renderCards(); } }
+        function addCard() { const name = document.getElementById('cardName').value, limit = parseFloat(document.getElementById('cardLimit').value); if (!name || isNaN(limit) || limit <= 0) return alert("Erro"); creditCards.push({ id: 'card_' + Date.now(), name: name, limit: limit }); localStorage.setItem(`finances_cards_${usuarioLogado}`, JSON.stringify(creditCards)); document.getElementById('cardName').value = ''; document.getElementById('cardLimit').value = ''; loadPaymentMethods(); renderCards(); sincronizarComNuvem(); }
+        function deleteCard(id) { if(confirm("Deletar cartão?")) { creditCards = creditCards.filter(c => c.id !== id); localStorage.setItem(`finances_cards_${usuarioLogado}`, JSON.stringify(creditCards)); transactions.forEach(t => { if(t.paymentMethod === id) t.paymentMethod = 'main'; }); saveData(); loadPaymentMethods(); renderCards(); sincronizarComNuvem(); } }
         function renderCards() { const container = document.getElementById('cardsList'); container.innerHTML = ''; const filteredTrans = getFilteredTransactions(); if(creditCards.length === 0) return container.innerHTML = '<p style="color:var(--text-muted);">Nenhum cartão cadastrado.</p>'; creditCards.forEach(c => { let spentThisMonth = 0; filteredTrans.forEach(t => { if(t.paymentMethod === c.id && t.type === 'expense') spentThisMonth += t.amount; }); let available = c.limit - spentThisMonth; let percent = (spentThisMonth / c.limit) * 100; let barWidth = percent > 100 ? 100 : percent; let colorClass = percent >= 90 ? 'danger' : (percent >= 75 ? 'warning' : ''); container.innerHTML += `<div class="credit-card-box"><button onclick="deleteCard('${c.id}')" style="position:absolute; top:15px; right:15px; background:none; border:none; color:#f87171; cursor:pointer;"><i class="fas fa-trash"></i></button><div class="chip"></div><h4>Cartão ${c.name}</h4><div style="margin-top: 15px;"><div style="display:flex; justify-content:space-between; font-size: 0.85rem; margin-bottom: 5px; color:#e2e8f0;"><span>Fatura: <strong>${formatCurrency(spentThisMonth)}</strong></span><span>Livre: ${formatCurrency(available)}</span></div><div class="progress-bar" style="background: rgba(255,255,255,0.2); border: none;"><div class="progress-fill ${colorClass}" style="width: ${barWidth}%; background-color: ${colorClass=='' ? '#10b981' : ''};"></div></div></div></div>`; }); }
         function loadPaymentMethods() { const select = document.getElementById('expensePaymentMethod'); select.innerHTML = '<option value="main">Conta Principal / Dinheiro</option>'; creditCards.forEach(c => select.innerHTML += `<option value="${c.id}">💳 Cartão: ${c.name}</option>`); }
+        
         function loadProfileData() { const profile = JSON.parse(localStorage.getItem(`finances_profile_${usuarioLogado}`)) || {}; document.getElementById('profileName').value = profile.name || ''; document.getElementById('profileJob').value = profile.job || ''; }
-        function saveProfile() { const profile = { name: document.getElementById('profileName').value, job: document.getElementById('profileJob').value }; localStorage.setItem(`finances_profile_${usuarioLogado}`, JSON.stringify(profile)); const fb = document.getElementById('profileFeedback'); fb.style.display = 'block'; setTimeout(() => fb.style.display = 'none', 3000); }
-        function addNote() { const title = document.getElementById('noteTitle').value, text = document.getElementById('noteText').value; if(!text) return alert("Erro"); notesList.unshift({ id: Date.now(), title: title || 'Sem título', text: text, date: new Date().toLocaleDateString('pt-BR') }); localStorage.setItem(`finances_notes_${usuarioLogado}`, JSON.stringify(notesList)); document.getElementById('noteTitle').value = ''; document.getElementById('noteText').value = ''; renderNotes(); }
-        function deleteNote(id) { notesList = notesList.filter(n => n.id !== id); localStorage.setItem(`finances_notes_${usuarioLogado}`, JSON.stringify(notesList)); renderNotes(); }
+        function saveProfile() { const profile = { name: document.getElementById('profileName').value, job: document.getElementById('profileJob').value }; localStorage.setItem(`finances_profile_${usuarioLogado}`, JSON.stringify(profile)); const fb = document.getElementById('profileFeedback'); fb.style.display = 'block'; setTimeout(() => fb.style.display = 'none', 3000); sincronizarComNuvem(); }
+        
+        function addNote() { const title = document.getElementById('noteTitle').value, text = document.getElementById('noteText').value; if(!text) return alert("Erro"); notesList.unshift({ id: Date.now(), title: title || 'Sem título', text: text, date: new Date().toLocaleDateString('pt-BR') }); localStorage.setItem(`finances_notes_${usuarioLogado}`, JSON.stringify(notesList)); document.getElementById('noteTitle').value = ''; document.getElementById('noteText').value = ''; renderNotes(); sincronizarComNuvem(); }
+        function deleteNote(id) { notesList = notesList.filter(n => n.id !== id); localStorage.setItem(`finances_notes_${usuarioLogado}`, JSON.stringify(notesList)); renderNotes(); sincronizarComNuvem(); }
         function renderNotes() { const container = document.getElementById('notesContainer'); container.innerHTML = ''; if(notesList.length === 0) return container.innerHTML = '<p style="color:var(--text-muted);">Vazio.</p>'; notesList.forEach(n => { container.innerHTML += `<div style="background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; position:relative;"><button onclick="deleteNote(${n.id})" style="position:absolute; top:10px; right:10px; background:none; border:none; color:var(--danger); cursor:pointer;"><i class="fas fa-trash"></i></button><h4 style="margin-bottom:0.5rem; color:var(--primary); font-size:1rem;">${n.title}</h4><p style="color:var(--text-main); white-space: pre-wrap; font-size:0.95rem;">${n.text}</p><small style="color:var(--text-muted); display:block; margin-top:10px; font-size:0.8rem;">${n.date}</small></div>`; }); }
+        
         function loadCategories() { const selectExp = document.getElementById('expenseCategory'), selectLim = document.getElementById('limitCategory'); selectExp.innerHTML = ''; selectLim.innerHTML = '<option value="Geral">Orçamento Geral</option>'; categories.forEach(cat => { selectExp.innerHTML += `<option value="${cat}">${cat}</option>`; selectLim.innerHTML += `<option value="${cat}">${cat}</option>`; }); }
-        function manageCategories() { const acao = prompt("1 para ADICIONAR, 2 para REMOVER:"); if (acao === '1') { const nova = prompt("Nome:"); if (nova && !categories.includes(nova)) { categories.push(nova); localStorage.setItem(`finances_categories_${usuarioLogado}`, JSON.stringify(categories)); loadCategories(); } } else if (acao === '2') { const lista = categories.map((c, i) => `${i}: ${c}`).join('\n'); const idx = prompt(`Número:\n${lista}`); if (idx !== null && categories[idx]) { categories.splice(idx, 1); localStorage.setItem(`finances_categories_${usuarioLogado}`, JSON.stringify(categories)); loadCategories(); } } }
+        function manageCategories() { const acao = prompt("1 para ADICIONAR, 2 para REMOVER:"); if (acao === '1') { const nova = prompt("Nome:"); if (nova && !categories.includes(nova)) { categories.push(nova); localStorage.setItem(`finances_categories_${usuarioLogado}`, JSON.stringify(categories)); loadCategories(); sincronizarComNuvem(); } } else if (acao === '2') { const lista = categories.map((c, i) => `${i}: ${c}`).join('\n'); const idx = prompt(`Número:\n${lista}`); if (idx !== null && categories[idx]) { categories.splice(idx, 1); localStorage.setItem(`finances_categories_${usuarioLogado}`, JSON.stringify(categories)); loadCategories(); sincronizarComNuvem(); } } }
         
         function renderAnalysis() { 
             const filtered = getFilteredTransactions(), listObj = {}; 
@@ -774,33 +696,25 @@
                     if(prio === 'Essencial') totalEssencial += t.amount; 
                     if(prio === 'Importante') totalImportante += t.amount; 
                     if(prio === 'Superfluo') totalSuperfluo += t.amount; 
-                } else if(t.type === 'income') {
-                    totalEntradas += t.amount;
-                }
+                } else if(t.type === 'income') { totalEntradas += t.amount; }
             }); 
 
             let sobra = totalEntradas - totalDespesas;
-            document.getElementById('analiseReceita').innerText = formatCurrency(totalEntradas);
-            document.getElementById('analiseGasto').innerText = formatCurrency(totalDespesas);
-            document.getElementById('analiseSobra').innerText = formatCurrency(sobra);
-            document.getElementById('analiseSobra').style.color = sobra >= 0 ? 'var(--success)' : 'var(--danger)';
+            document.getElementById('analiseReceita').innerText = formatCurrency(totalEntradas); document.getElementById('analiseGasto').innerText = formatCurrency(totalDespesas); document.getElementById('analiseSobra').innerText = formatCurrency(sobra); document.getElementById('analiseSobra').style.color = sobra >= 0 ? 'var(--success)' : 'var(--danger)';
 
             const sortedCategories = Object.entries(listObj).sort((a, b) => b[1] - a[1]), listEl = document.getElementById('analysisCategoryList'); listEl.innerHTML = ''; 
             if(sortedCategories.length === 0) { listEl.innerHTML = '<li style="justify-content:center; color:var(--text-muted);">Nenhuma despesa.</li>'; document.getElementById('analysisInsights').innerHTML = ''; document.getElementById('priorityBars').innerHTML = ''; return; } 
-            
             sortedCategories.forEach(([cat, amt]) => { let perc = ((amt / totalDespesas) * 100).toFixed(1); listEl.innerHTML += `<li style="display:flex; justify-content:space-between; padding:10px; background:var(--card); border:1px solid var(--border); border-radius:8px; margin-bottom:10px;"><div style="font-weight:600;">${cat}</div><div style="text-align:right;"><span style="color:var(--danger); font-weight:700;">${formatCurrency(amt)}</span><br><small style="color:var(--text-muted);">${perc}% das despesas</small></div></li>`; }); 
-            
             const topCategory = sortedCategories[0], insightsEl = document.getElementById('analysisInsights'); 
             let insightHTML = `<div class="insight-box"><h4>Maior Gasto</h4><p><strong>${topCategory[0]}</strong> (${formatCurrency(topCategory[1])}).</p></div>`; 
             if(totalSuperfluo > (totalDespesas * 0.3)) insightHTML += `<div class="insight-box" style="border-left-color: var(--danger);"><h4 style="color: var(--danger);">Alerta</h4><p>Mais de 30% em supérfluos.</p></div>`; 
             insightsEl.innerHTML = insightHTML; 
-            
             const prioBarsEl = document.getElementById('priorityBars'); prioBarsEl.innerHTML = ''; 
             [{name: 'Essencial', val: totalEssencial, color: 'var(--info)'}, {name: 'Importante', val: totalImportante, color: 'var(--primary)'}, {name: 'Supérfluo', val: totalSuperfluo, color: 'var(--danger)'}].forEach(p => { let perc = totalDespesas > 0 ? ((p.val / totalDespesas) * 100) : 0; prioBarsEl.innerHTML += `<div class="progress-wrapper"><div class="progress-header"><span>${p.name}</span><span>${formatCurrency(p.val)} (${perc.toFixed(0)}%)</span></div><div class="progress-bar"><div class="progress-fill" style="width: ${perc}%; background-color: ${p.color};"></div></div></div>`; }); 
         }
 
-        function addLimit() { const cat = document.getElementById('limitCategory').value, amt = parseFloat(document.getElementById('limitAmount').value); if(isNaN(amt) || amt <= 0) return alert("Erro."); limits[cat] = amt; localStorage.setItem(`finances_limits_${usuarioLogado}`, JSON.stringify(limits)); document.getElementById('limitAmount').value = ''; renderMetas(); }
-        function removeLimit(cat) { delete limits[cat]; localStorage.setItem(`finances_limits_${usuarioLogado}`, JSON.stringify(limits)); renderMetas(); }
+        function addLimit() { const cat = document.getElementById('limitCategory').value, amt = parseFloat(document.getElementById('limitAmount').value); if(isNaN(amt) || amt <= 0) return alert("Erro."); limits[cat] = amt; localStorage.setItem(`finances_limits_${usuarioLogado}`, JSON.stringify(limits)); document.getElementById('limitAmount').value = ''; renderMetas(); sincronizarComNuvem(); }
+        function removeLimit(cat) { delete limits[cat]; localStorage.setItem(`finances_limits_${usuarioLogado}`, JSON.stringify(limits)); renderMetas(); sincronizarComNuvem(); }
         function renderMetas() { const list = document.getElementById('limitsList'); list.innerHTML = ''; const filtered = getFilteredTransactions(); if(Object.keys(limits).length === 0) return list.innerHTML = '<p style="color:var(--text-muted); text-align:center;">Vazio.</p>'; for (const [cat, limit] of Object.entries(limits)) { let spent = 0; filtered.forEach(t => { if((t.type || 'expense') === 'expense' && (cat === 'Geral' || t.category === cat)) spent += t.amount; }); let percent = (spent / limit) * 100, displayPercent = percent > 99 ? (percent >= 100 ? 100 : 99) : percent.toFixed(0), barWidth = percent > 100 ? 100 : percent; let colorClass = percent >= 100 ? 'danger' : (percent >= 80 ? 'warning' : ''); list.innerHTML += `<div class="progress-wrapper"><div class="progress-header"><span>${cat} <button onclick="removeLimit('${cat}')" style="background:none; border:none; color:var(--danger); cursor:pointer;"><i class="fas fa-times"></i></button></span><span>${formatCurrency(spent)} / ${formatCurrency(limit)} (${displayPercent}%)</span></div><div class="progress-bar"><div class="progress-fill ${colorClass}" style="width: ${barWidth}%"></div></div></div>`; } }
     </script>
 </body>
