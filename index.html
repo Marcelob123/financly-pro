@@ -151,7 +151,6 @@
         .analysis-summary p { font-size: 1.8rem; font-weight: 800; margin: 0; }
         .sobra-box { background: var(--bg); border-radius: 8px; padding: 10px; }
 
-        /* Estilo para barra de busca */
         .search-container {
             position: relative;
             margin-bottom: 1rem;
@@ -373,7 +372,9 @@
     <script>
         function formatCurrency(value) { return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value); }
 
-        const API_URL = "https://script.google.com/macros/s/AKfycbzRXtQ2X5Xb7TT6FIYk3tOZ6I-3MpqLZOTUiej2fCxupkZmy57Ze5LKy0vjm8dCbg0UEQ/exec";
+        /* ATUALIZADO: URL do Servidor GitHub Pages */
+        const API_URL = "https://marcelob123.github.io/financly-pro/";
+        
         let bancoDados = {};
         
         let usuarioLogado = localStorage.getItem('usuario_financely') || null;
